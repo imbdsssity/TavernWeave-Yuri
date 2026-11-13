@@ -1,3 +1,9 @@
+# Unreleased test checkpoint — 1.2.1-dev.1
+
+Adds explicit V2/V3 top-level/data mirror discovery and coordinated edits regardless of whether source values already agree; missing counterparts are named and mismatched outputs are refused. Adds opt-in html_text changes for HTML text nodes, including fenced htm/html menus, while preserving markup, attributes, script/style bodies, macro structure and fence delimiters. Exact opening copies in known regex replacement templates are disclosed and must be coordinated in the same transaction; arbitrary regex logic/configuration remains protected. Tags and nested greeting mirrors are covered. No after-export patching or automatic source normalization is used.
+
+This checkpoint is for testing from yuri-dev, not an official release. The exact private reproduction card and live SillyTavern runtime have not been tested here.
+
 # Yuri Card Workbench 1.2.0
 
 Official release authorized on 2026-11-13. TavernWeave-Yuri is a specialized Yuri product distribution built on the TavernWeave ecosystem, with four canonical domain workflows, shared execution contracts and native-host composition.
