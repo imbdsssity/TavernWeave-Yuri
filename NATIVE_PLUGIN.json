@@ -1,9 +1,9 @@
 {
   "schema": "yuri/native-plugin/v1",
   "name": "tavernweave-yuri",
-  "version": "0.5.0",
-  "source_commit": "4c71449dee3555732c75b912dbee9bcb3186f389",
-  "source_files": 611,
+  "version": "1.0.0",
+  "source_commit": "5ab97e2dd36cda9cf97e9e131fa5d719be48cf80",
+  "source_files": 628,
   "upstream_skills": [
     "activate-tavernweave-soul",
     "build-work-library",
@@ -75,15 +75,15 @@
   "host_loading": "not_observed_for_this_build",
   "account_installation": "not_performed",
   "host_scope": [
-    "Gemini CLI individually imported skills",
+    "Gemini CLI extension with bundled skills",
     "Gemini Task mode individually imported skills"
   ],
   "not_claimed": [
-    "Gemini plugin import",
-    "automatic cross-skill transitions",
+    "host installation for this build",
+    "automatic cross-skill execution",
     "public-directory publication",
     "new card conversion or roleplay"
   ],
   "distribution_branch": "Gemini-plugin",
-  "skill_import": "Import the four skills individually; retain the complete package and explicitly load dependencies."
+  "skill_import": "Gemini CLI: install the complete extension; bundled skills are discovered automatically. Task mode: import skills individually and retain the complete package."
 }
