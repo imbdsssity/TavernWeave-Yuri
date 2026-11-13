@@ -1,4 +1,6 @@
-# Yuri Card Workbench 1.0.0 for Gemini
+# Yuri Card Workbench 1.2.0 for Gemini
+
+A specialized Yuri product distribution built on TavernWeave. Four canonical workflows are exposed through four wrappers; with 23 upstream dependencies this gives 27 discoverable entries. Internal implementation modules are not additional entries.
 
 Install this complete bundle as a Gemini CLI extension:
 
@@ -11,4 +13,4 @@ Restart Gemini CLI, then check /skills list for the four yuri workflows. Gemini 
 
 [English guide](extensions/yuri-creation/README.md) · [中文说明](extensions/yuri-creation/README.zh-CN.md) · [Installation and limits](extensions/yuri-creation/docs/NATIVE_HOSTS.md)
 
-Built from `5ab97e2dd36cda9cf97e9e131fa5d719be48cf80`. See NATIVE_PLUGIN.json and NATIVE_LICENSE_BOUNDARY.md. The root gemini-extension.json loads GEMINI.md and skills/ contains the discoverable entries. User-reported Gemini CLI extension import/discovery passed; this build does not repeat installation or card conversion.
+Built from `503f2eb5ee252f29140969a9605d67b81983e01a`. See NATIVE_PLUGIN.json and NATIVE_LICENSE_BOUNDARY.md. The root gemini-extension.json loads GEMINI.md and skills/ contains the discoverable entries. User-reported Gemini CLI extension import/discovery passed; this build does not repeat installation or card conversion.
