@@ -1,168 +1,178 @@
 # Yuri Card Workbench Lite — Agent Assignments and Integration Plan
 
-**Status:** Proposed execution plan  
-**Coordinator:** Agent 0 — Architect / Integration Lead  
+**Status:** Revised design work packages; no agents or trials launched by this document  
+**Revision date:** 2026-11-14  
+**Coordinator:** Agent 0, Architect / Integration Lead  
 **Repository:** `imbdsssity/TavernWeave-Yuri`  
-**Development baseline:** `yuri-dev`  
-**Design branch:** `lite-phase-0-design`
+**Development integration:** `yuri-dev`  
+**Current design branch:** `lite-phase-0-design`
 
-## 1. Coordination model
+## Contents
 
-Use a hub-and-spoke model. Agent 0 owns architecture, shared contracts, integration decisions and release readiness. Specialist agents own bounded deliverables and must not independently redefine shared policy.
+1. Decisions and authorization boundary
+2. Roles and deliverables
+3. File ownership and package layout
+4. Branch coordination
+5. Execution order and acceptance gates
+6. Test cost and evidence rules
+7. Full-edition follow-up
+8. Handoff and current status
 
-Multiple ChatGPT instances may contribute through GitHub, but write access is not a shared execution environment. Each instance must inspect the current branch state, work only within its assigned paths and report exactly what it changed.
+## 1. Decisions and authorization boundary
 
-No agent may merge into `yuri-dev`, modify `main`, publish a release or update Full-edition distribution branches without explicit release authorization.
+The user has resolved the three design choices:
 
-## 2. Work packages
+- **D1:** Existing-card output is decided by actual tests, not an architectural preference.
+- **D2:** Sequential multi-chapter processing with conversational checkpoints is required.
+- **D3:** Prepare portable, ChatGPT Projects and Custom GPT compatibility packages.
 
-| Agent | Role | Owned deliverables | Dependencies |
-|---|---|---|---|
-| 0 | Architect / Integration Lead | Architecture decisions, shared contract changes, integration, PR review, final acceptance report | All packages |
-| 1 | Yuri Policy Specialist | Policy wording, preference semantics, character/relationship/player-agency references | Shared contracts |
-| 2 | Original Creation Specialist | `CREATION.md`, creation examples and worldbook guidance for conversation-only use | Policy contracts |
-| 3 | Existing-Card Specialist | `ADAPTATION.md`, JSON/JSON Patch guidance, preservation limitations and examples | Policy + output contracts |
-| 4 | Source Adaptation Specialist | `POST.md`, `NOVEL.md`, evidence records, scope/continuity templates | Policy + source contracts |
-| 5 | Packaging / Documentation Specialist | Lite README files, package instructions, localization and licensing/notice review | Stable workflow interfaces |
-| 6 | Independent QA Specialist | Static audit, cross-workflow review, conversational test plan, findings and evidence ledger | Candidate package |
+Do not ask the user to choose these again. Output-mode selection and host eligibility remain evidence questions. Do not label a package or workflow accepted before relevant observations exist.
 
-Agents 1–4 may draft in parallel after Agent 0 freezes the initial contracts. Agent 5 may prepare documentation scaffolding earlier, but must not promise unfinished capabilities. Agent 6 reviews merged candidates and does not silently rewrite specialist deliverables.
+This revision updates four planning documents only. It does not start specialist agents, spend a model-test budget, alter Full runtime code, merge branches, configure the user's ChatGPT account or publish a release. GitHub write access does not create shared execution, account-admin authority or subagent capabilities.
 
-## 3. File ownership
+Use one integration lead and bounded ownership. The seven roles may be performed by fewer independent instances in sequence; seven simultaneous sessions are not required. User-controlled handoffs are acceptable when automatic delegation is unavailable.
 
-Suggested final Lite package layout:
+## 2. Roles and deliverables
+
+| Agent | Scope | Required deliverables and dependencies |
+| --- | --- | --- |
+| 0 | Architecture/integration | Maintain design decisions and policy compatibility; resolve conflicts; approve bounded work packages; integrate reviewed work and report remaining evidence gaps. |
+| 1 | Shared policy/core | `CORE.md`, Yuri/relationship/player-agency references and preference template; align the causal-relationship default across all forms. |
+| 2 | Original creation | `CREATION.md`, character/worldbook methodology and a synthetic example; depend on Agent 1's contract. |
+| 3 | Existing-card workflow | `ADAPTATION.md`, output candidates, preservation limits and application instructions; co-own T1 with Agent 6, without choosing patch-first or full-first beforehand. |
+| 4 | Sources/continuity | `POST.md`, `NOVEL.md`, evidence and checkpoint templates, fresh-session resume prompt, source-revision handling and bounded novel fixture; co-own T2 with Agent 6. |
+| 5 | Distribution/setup | Portable starter plus separate Projects and Custom GPT compatibility setup packages, upload maps, lifecycle notes, bilingual guides and licensing review; depend on stable core/checkpoint contracts. |
+| 6 | Independent QA | Static consistency review and actual T1/T2/T3 evidence; assess output/application and fresh-session behavior; report unavailable tests honestly. |
+
+Agent 0 reviews shared-policy changes rather than rewriting specialist prose for stylistic preference. Agent 6 may propose a patch, but does not silently alter another agent's owned instructions.
+
+## 3. File ownership and package layout
+
+The following is a target layout, not a claim these implementation files exist:
 
 ```text
 distributions/chat-mode-lite/
-  README.md
-  README.zh-CN.md
-  LICENSE
-  THIRD_PARTY_NOTICES.md
+  design/                         # Four design documents; Agent 0
   instructions/
-    CORE.md
-    CREATION.md
-    ADAPTATION.md
-    POST.md
-    NOVEL.md
+    CORE.md                       # Agent 1, Agent 0 contract review
+    CREATION.md                   # Agent 2
+    ADAPTATION.md                 # Agent 3
+    POST.md                       # Agent 4
+    NOVEL.md                      # Agent 4
   references/
-    yuri-policy.md
-    character-design.md
-    relationship-rules.md
-    source-evidence.md
-    player-agency.md
-    worldbook-design.md
-    card-output.md
-  schemas/
-    preferences.schema.json
-    source-record.schema.json
-    card-output.schema.json
+    yuri-policy.md                # Agent 1
+    relationship-rules.md         # Agent 1
+    player-agency.md              # Agent 1
+    character-design.md           # Agent 2
+    worldbook-design.md            # Agent 2
+    card-output.md                # Agent 3
+    source-evidence.md            # Agent 4
   templates/
-    preferences.json
-    continuity-record.md
-    adaptation-record.md
-  examples/
-    original-card.md
-    post-adaptation.md
-    novel-adaptation.md
+    preferences.json              # Agent 1
+    adaptation-record.md          # Agent 4; Agent 3 reviews card use
+    continuity-record.md          # Agent 4
+    resume-prompt.md              # Agent 4
+  packages/
+    portable/                     # Agent 5
+      START_HERE.md
+      UPLOAD_MAP.md
+    chatgpt-projects/             # Agent 5
+      PROJECT_INSTRUCTIONS.md
+      SETUP.md
+      UPLOAD_MAP.md
+      RESUME_GUIDE.md
+    custom-gpt/                   # Agent 5
+      GPT_INSTRUCTIONS.md
+      CONFIGURATION.md
+      KNOWLEDGE_MAP.md
+      PREVIEW_TESTS.md
+      COMPATIBILITY_AND_MIGRATION.md
+  examples/                       # Each workflow author owns its example
+  qa/                             # Agent 6
+    fixtures/
+    OUTPUT_TRIALS.md
+    CHECKPOINT_TRIALS.md
+    HOST_PACKAGE_CHECKS.md
+  README.md                       # Agent 5
+  README.zh-CN.md                  # Agent 5
+  PACKAGE_CONTENTS.md              # Agent 5; Agent 0 release review
+  LICENSE                         # Agent 5; preserve actual boundaries
+  THIRD_PARTY_NOTICES.md           # Agent 5
 ```
 
-Ownership:
-- Agent 0: `design/` and any shared-contract changes.
-- Agent 1: `references/yuri-policy.md`, `relationship-rules.md`, `player-agency.md`, preference template/schema proposals.
-- Agent 2: `instructions/CREATION.md`, `references/character-design.md`, `worldbook-design.md`, original example.
-- Agent 3: `instructions/ADAPTATION.md`, `references/card-output.md`, card-output schema proposal and adaptation example.
-- Agent 4: `instructions/POST.md`, `instructions/NOVEL.md`, `references/source-evidence.md`, continuity/adaptation templates and source examples.
-- Agent 5: root README files, LICENSE/third-party notice proposal and final package navigation.
-- Agent 6: QA reports under `qa/`; may propose fixes but does not edit another agent's owned files without coordination.
+Any optional schemas describe data; they do not imply runtime validation. Agent 1 owns preference-schema proposals, Agent 3 card-output proposals and Agent 4 source/checkpoint proposals. Coordinate edits to shared templates rather than concurrent writes.
 
-Agent 0 resolves conflicts and owns final integration. Schema files are optional descriptive contracts; their presence must not imply that Lite can execute a validator.
+Package adaptations must derive their required rules from the same canonical Lite files. Use version mapping and a content/parity checklist; do not maintain three independent policies. A build helper is optional maintainer tooling, never an end-user prerequisite. Every produced package must include the referenced content, not links requiring access to the Full checkout.
 
-## 4. Branch and PR protocol
+Agent 5 places mandatory behavior in actual host instruction fields, not only uploaded knowledge. Keep design documents, QA transcripts, private sources and real user checkpoints out of default runtime knowledge bundles. Prepare plain-text setup instructions and a fallback; do not claim one-click archive import or automatic account creation.
 
-Use one feature branch per work package, created from the agreed `yuri-dev` baseline after the architecture branch is integrated or explicitly designated as the shared base.
+## 4. Branch coordination
 
-Suggested branches:
-- `lite-policy`
-- `lite-creation`
-- `lite-adaptation`
-- `lite-source`
-- `lite-docs`
-- `lite-qa`
+Continue design edits on `lite-phase-0-design`. Before specialist implementation, Agent 0 selects one immutable shared baseline containing the agreed contracts. The live `yuri-dev` audit head was `e8b00854654f504938e28da98340419cbd83d07e`; re-read branch heads at execution time, because this is not a promise they remain unchanged.
 
-Each agent:
-1. Confirms the repository, base branch and assigned file paths.
-2. Creates or uses only its assigned branch.
-3. Reads the current shared contracts before drafting.
-4. Makes focused commits with descriptive messages.
-5. Opens a PR targeting the agreed Lite integration branch (not `main`).
-6. Reports changed paths, design decisions, limitations and checks actually performed.
+Use focused feature branches such as `lite-policy`, `lite-creation`, `lite-adaptation`, `lite-source`, `lite-docs` and `lite-qa`. Create them only when the work starts. Do not create parallel permanent source histories or treat generated host packages as editable canonical source.
 
-If multiple agents cannot create branches or PRs, Agent 0 may collect their proposed content and perform the GitHub writes. Do not have multiple agents write concurrently to the same path.
+Each agent confirms the base SHA, owner/path scope and contract revision; reads current content; makes focused commits on its branch; and opens a PR to the coordinator-designated development target, not `main`. The coordinator alone integrates after review within the user's actual authorization.
 
-## 5. Integration order and gates
+Do not force-push, overwrite concurrent work, reset `yuri-dev` to this older design branch or merge an entire generated distribution into source. Re-read changed files/SHAs before writes and resolve conflicts explicitly. Preserve the newer Full development fixes while integrating only the intended Lite paths.
 
-### Gate 0 — Architecture baseline
-- Approve project scope, feature matrix and shared contracts.
-- Confirm the Full edition and existing host branches remain untouched.
-- Confirm licensing approach for any reused upstream material.
+A design or integration PR is not release authorization. `main`, Full installation branches and public release metadata remain protected by separate scope/approval. Multiple instances sharing GitHub credentials do not gain independent authority to publish.
 
-### Gate 1 — Policy foundation
-- Integrate Agent 1's policy references.
-- Verify semantic alignment with `LITE_SHARED_CONTRACTS.md`.
-- Resolve conflicting defaults before workflow work proceeds.
+## 5. Execution order and acceptance gates
 
-### Gate 2 — Workflow implementation
-- Integrate creation, adaptation and source workflows.
-- Check every workflow uses the same terms for source fact, inference, user decision and creative addition.
-- Check all workflows respect player agency and protected content.
+### G0 — Contract baseline
 
-### Gate 3 — Package and documentation
-- Verify all required instructions are self-contained.
-- Remove broken links and mandatory references to Full scripts/upstream skill routing.
-- Ensure Chinese and English documentation describe the same scope.
+Record D1–D3 as settled. Confirm the same causal relationship default, source fidelity and player-agency rules. Identify upstream-derived text and notices. Remove stale patch-first instructions and obsolete questions asking whether sequential reading or ChatGPT packages are required.
 
-### Gate 4 — Independent QA
-- Static inspection for unavailable runtime/tool assumptions.
-- Cross-workflow policy consistency review.
-- Conversational trials with fixed synthetic inputs.
-- Artifact inspection where the host actually exposes the output.
-- Record untested claims and host-specific limitations.
+### G1 — Core and checkpoint contract
 
-### Gate 5 — Release decision
-- Agent 0 prepares a release-readiness report.
-- User reviews the Lite candidate and authorizes publication.
-- Only then may a release PR target `main` and a Lite-specific tag/artifact be created.
+Agent 1 prepares the compact core. Agent 4 defines the checkpoint template and resume prompt against `yuri-lite/checkpoint/v1`. Agent 0 verifies source/profile revisions, lineage, coverage, gaps, correction handling and separation of read-through progress from story knowledge.
 
-## 6. Required agent handoff format
+### G2 — Workflow drafts
 
-Every specialist handoff must state:
+Agents 2–4 draft self-contained workflows. Existing-card output remains experimental until T1. Novel processing must carry the user's total scope across smaller batches rather than silently reducing the task. Reuse the same post/narrator player-binding and evidence vocabulary.
 
-- **Role and assigned scope**
-- **Base commit/branch**
-- **Files created or changed**
-- **Policy version used**
-- **Decisions made**
-- **Assumptions and unresolved questions**
-- **Capabilities assumed from the host**
-- **Checks actually performed**
-- **Checks not performed**
-- **Known limitations**
-- **PR link or proposed patch**
+### G3 — Actual bounded trials
 
-Do not report a test as passed unless it was actually executed or directly observed. Static inspection, model self-review, conversational trials, JSON inspection and real SillyTavern import are distinct evidence types.
+Agent 6 performs or coordinates only the approved small trials in suitable host sessions:
 
-## 7. Conflict and safety rules
+- **T1 with Agent 3:** same synthetic JSON card/change through viable output candidates; measure preservation, completeness, application effort and resulting artifact. Record the final evidence-backed output policy or unsupported cases.
+- **T2 with Agent 4:** one short synthetic multi-chapter fixture; checkpoint, new conversation, next chapter, source uncertainty/correction and knowledge-stage constraints. Record repeated-resume/missing-source behavior without a large test campaign.
 
-- Shared policy conflicts are escalated to Agent 0; workflow agents do not invent local exceptions.
-- User-specific preferences and private card/source material must not be committed as public examples.
-- Use synthetic fixtures unless a user explicitly authorizes a private sample.
-- Do not reintroduce withdrawn or excluded private samples from prior work.
-- Never place secrets, account tokens, private casework or generated user cards in the public Lite package.
-- Preserve applicable upstream licenses and notices. Do not assume that co-location makes upstream material MIT-licensed.
-- No agent may claim lossless card preservation, successful import, image generation, web retrieval or code execution without corresponding evidence.
+Test design or model self-review does not complete either gate. Do not use this expensive design-authoring instance for inference-heavy sample trials.
 
-## 8. Current status
+### G4 — Three distribution preparations and host checks
 
-The four design documents are the Phase 0/1 starting baseline. No Lite workflow has yet been migrated, no Full capability has been removed, and no release has been authorized.
+Agent 5 prepares all three packages. Agent 6 reuses existing fixtures for T3: check active instructions, required-rule presence, reference mapping, tools-disabled operation and checkpoint recovery. Test actual Project setup where available. Test Custom GPT configuration/Preview only where the user's account can support it.
 
-Next action: Agent 0 reviews the four documents with the user, resolves the open decisions in the feature matrix, then authorizes specialist work packages.
+Custom GPT creation, editing and retirement restrictions are live constraints. Use the dated official guidance linked in `LITE_PROJECT_SPEC.md`, verify the workspace notice and recheck before release. A blocked Custom GPT deployment remains blocked/unverified; preparation of its compatibility package is still required. Projects/portable delivery must not depend on Custom GPT access.
+
+### G5 — Readiness and release
+
+Agent 0 checks parity, evidence scope, remaining blockers and license notices, then reports readiness. No universal host or large-input compatibility claim follows from one successful sample. Public release/version/tag changes require their own authorization. User feedback stays in conversation; the agents maintain the records.
+
+## 6. Test cost and evidence rules
+
+Use cost-effective GPT instances for model-based tests, a small synthetic sample per relevant test, and bounded variations that address an identified risk. Reuse prior evidence when the tested surface is unchanged. Do not repeat the Full host-import, image-generation or roleplay campaign, revive excluded cases, or silently call paid APIs.
+
+Estimate sample size/cost before starting. Shrink a test fixture rather than a user's already authorized real-project scope. No broad model competition is required to decide D1.
+
+Keep these evidence classes separate: static inspection; model semantic review; actual conversational trial; parser/diff/schema check; real host setup; SillyTavern import; human roleplay observation. Developer tooling may verify artifacts but must not become a Lite runtime dependency. A tool-disabled baseline should remain usable.
+
+For every trial record instruction/package version, source fixture revision, host/model and enabled capabilities, inputs/outputs, exact observed failures, checks run, checks unavailable and decision limits. No fabricated percentages, hashes, commands, tests or import results.
+
+## 7. Full-edition follow-up
+
+Agent 4 supplies a short gap assessment to Agent 0, based on the reviewed Full novel workflow, input reference and CLI. Those files already provide multi-chapter selection and checkpointed reading, so the question is reliable continuation semantics and evidence, not whether to build another ingestion engine.
+
+Recommend a separately scoped Full task to reuse the existing provenance/creative authority for explicit checkpoint/resume, revision consistency, corrections, knowledge stages and repeat-resume safety. Audit existing shared/upstream facilities before adding files or commands.
+
+Do not equate resuming unread registered units with appending newly supplied chapters. A later append/revision design must preserve frozen-source hashes and evidence bindings. This follow-up is not implemented or authorized merely by the Lite assignment document, and must not delay the independent Lite design unless an actual contract dependency emerges.
+
+## 8. Handoff and current status
+
+Every handoff states role/scope, base commit, changed paths, contract/package version, decisions, assumptions, checks performed, checks not performed, known limitations, evidence locations and PR/patch. A proposed role is not proof that a subagent was invoked.
+
+**Current state after this revision:** the user's three choices are incorporated in all four design documents. The source audit supports refining Full rather than inventing a new novel skill. No output winner is selected; no Lite model/host trial, implementation, account installation, PR merge or release is claimed.
+
+The design is ready for bounded work-package assignment without another round of the same three product-choice questions. See [scope](LITE_PROJECT_SPEC.md), [feature/tests](LITE_FEATURE_MATRIX.md) and [shared contracts](LITE_SHARED_CONTRACTS.md).
