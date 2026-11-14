@@ -1,145 +1,146 @@
 # Yuri Card Workbench Lite — Project Specification
 
-**Status:** Phase 0/1 design baseline  
-**Target release:** 0.1.0  
+**Status:** Phase 0/1 design baseline, revised for the user's three decisions  
+**Revision date:** 2026-11-14  
+**Target release:** Lite 0.1.0  
 **Parent product:** TavernWeave-Yuri 1.2.0  
-**Implementation status:** Design only; no workflow migration is authorized by this document.
+**Implementation status:** Design only; this revision neither runs model trials nor implements or releases the workflows.
 
-## 1. Product definition
+## Contents
 
-Yuri Card Workbench Lite is a lightweight, conversation-first edition of the Yuri Card Workbench. It preserves the product's Yuri adaptation methodology while removing mandatory dependence on CLI agents, local runtimes, package installation, shell commands, databases, binary processing and automated filesystem workflows.
+1. Confirmed decisions
+2. Product definition and goals
+3. Operating boundary
+4. Inputs and output experiments
+5. Sequential novel processing
+6. Required distributions
+7. Relationship to Full
+8. Acceptance and release gates
+9. Evidence and references
 
-Its primary target is ordinary client-facing LLM conversations, including ChatGPT Chat Mode and comparable non-CLI interfaces. It should also remain usable when the host has no Python, Node.js, network access, plugin loader, persistent workspace or sub-agent facility.
+## 1. Confirmed decisions
 
-Lite is a separate execution edition, not a replacement for the Full edition. Full remains the advanced CLI/plugin distribution. The two editions share behavioral policy and product intent, not necessarily implementation or technical guarantees.
+| ID | User decision | Implementation consequence |
+| --- | --- | --- |
+| D1 | Determine existing-card output through actual testing. | Compare complete JSON, field-level replacements and machine-readable patches where useful. Do not prescribe patch-first or complete-JSON-first behavior before results exist. |
+| D2 | Include sequential, multi-chapter processing with conversational checkpoints. | Treat continuation within and across conversations as a required workflow, not an optional future feature. |
+| D3 | Also prepare packages for ChatGPT Projects and Custom GPTs. | Deliver a portable text edition plus distinct Projects and Custom GPT setup packages from the same maintained Lite policy. Check actual host availability separately. |
 
-## 2. Product goals
+These choices are settled requirements. Do not reopen them as a questionnaire. The outcome of D1 remains deliberately undecided until observed trials support a selection.
 
-1. Preserve the four user-facing workflows:
-   - `yuri-card-creator`: create an original card from conversation.
-   - `adapt-yuri-card`: adapt a supplied existing card.
-   - `post-to-yuri-card`: adapt a user-supplied post.
-   - `novel-excerpt-to-yuri-card`: adapt explicitly supplied novel chapters or excerpts.
-2. Preserve core Yuri policies: eligible-character criteria, main-cast scope, background-character treatment, relationship causality, source fidelity, player agency and user authorization.
-3. Keep source facts, inference, user decisions and creative additions distinguishable.
-4. Produce useful text-based SillyTavern card/worldbook content and transparent adaptation records.
-5. Make unsupported capabilities and incomplete processing visible rather than silently substituting or claiming success.
-6. Keep the package understandable and usable without requiring the user to complete technical worksheets.
+## 2. Product definition and goals
 
-## 3. Non-goals for Lite 0.1.0
+Lite is a conversation-first execution edition of Yuri Card Workbench. Preserve the four workflows, Yuri adaptation rules, causal relationship reasoning, source fidelity, player agency, name review and user-controlled preferences without requiring the CLI/plugin execution environment.
 
-Lite does not aim to reproduce Full's execution infrastructure. The initial release excludes:
+The four workflow identifiers remain `yuri-card-creator`, `adapt-yuri-card`, `post-to-yuri-card` and `novel-excerpt-to-yuri-card`. The novel name does not limit it to one chapter: it also covers a user-declared sequence processed in bounded batches.
 
-- PNG card-payload decoding, encoding or repacking.
-- Binary-preservation guarantees or byte-identical round trips.
-- EPUB archive extraction; users may supply extracted text.
-- Automated backfilling, database indexing or persistent source-library transactions.
-- Mandatory Python, Node.js, shell, CLI, package installation or network access.
-- Native CLI plugin registration, host-specific build systems or generated plugin bundles.
-- Autonomous multi-agent orchestration.
-- Automated cryptographic hashes, schema validation or programmatic regression tests.
-- Arbitrary card-schema migration, executable script modification or runtime debugging.
-- Claims of guaranteed lossless preservation when editing a large or partially visible document.
+The intended users are ordinary roleplay creators, not developers. They provide material and creative decisions; the assistant maintains concise source and continuity records. Do not require users to maintain technical worksheets or silently make them install a patching tool.
 
-Image generation and web research are optional host capabilities, never required workflow steps.
+Full remains the advanced tool-backed edition. Lite shares behavior, not Full's binary-preservation, automated validation or persistent-storage guarantees. Repository 1 stays frozen; there is no routine backport to it.
 
-## 4. Target operating assumptions
+## 3. Operating boundary
 
-The baseline host can:
-- exchange conversational text;
-- accept user-supplied text and, where supported, file attachments;
-- reason over the material actually made available to it;
-- return structured text, including JSON and Markdown.
+### Baseline runtime
 
-The baseline host is not assumed to:
-- expose an editable filesystem or downloadable-file generator;
-- read every byte of a large attachment;
-- retain state across conversations;
-- execute code or validate JSON;
-- browse the web or call image tools;
-- delegate to other agents.
+Require only conversational text input and structured text output. Attachments, file creation, browsing, image tools, persistent storage, code execution and subagents are optional, detected capabilities. A failed Node/AGY/plugin-build check must not block a text-only Lite task: development tooling, host packaging and end-user runtime are separate concerns.
 
-Every workflow must declare what it actually received and processed. A host feature may improve convenience, but cannot be a prerequisite for the Lite core.
+The assistant must distinguish material supplied, actually available, reviewed, not yet processed, and absent. Attachment availability or retrieval of some passages is not evidence of complete reading.
 
-## 5. Supported input and output
+### Excluded from Lite 0.1.0 runtime
 
-### Inputs for 0.1.0
+- PNG payload decoding/repacking and binary-preservation guarantees.
+- EPUB archive extraction; externally extracted text may be supplied.
+- Automated source backfilling, indexing, database transactions or arbitrary filesystem operations.
+- Required Python, Node.js, shell, package installation, CLI registration or upstream skill invocation.
+- Autonomous multi-agent execution, script/regex migration and live runtime debugging.
+- Claims of automatic hash/schema verification, guaranteed lossless editing or successful import without the corresponding observed checks.
 
-- Conversation-only creative briefs.
-- User-supplied JSON character cards and JSON worldbooks, within practical context and output limits.
-- Pasted or attached TXT/Markdown text.
-- Explicitly selected novel chapters or excerpts supplied as text.
+These are end-user restrictions, not a ban on maintainer tooling. Developers may use available parsers, diffs or CI to inspect trial artifacts and package consistency. Record those checks separately; they must not become hidden Lite runtime dependencies.
 
-PNG and EPUB files are not directly supported in the first release. If a host can extract their text externally, the user may provide that extracted text, but Lite must not claim to have decoded the original container.
+## 4. Inputs and output experiments
 
-### Outputs for 0.1.0
+Accept creative briefs, supplied JSON/text cards and worldbooks, TXT/Markdown posts, and user-declared novel chapters or excerpts. For a PNG card, request decoded card JSON; visual inspection of the portrait does not expose its embedded card data.
 
-- SillyTavern-oriented character-card JSON, when the host can return the complete document.
-- Standalone worldbook JSON or clearly delimited worldbook entries.
-- Markdown source/evidence and adaptation records.
-- A field-level change summary.
-- Optional JSON Patch-style operations for narrow edits, with explicit paths and preconditions.
+Return playable card/worldbook drafts, adaptation notes and source records. Existing-card delivery is subject to D1:
 
-If the output exceeds the host's reliable response capacity, Lite must split it into numbered, clearly bounded parts and explain how to assemble them. It must not silently omit fields or claim a complete export when only a partial response was produced.
+- Candidate A: complete replacement JSON.
+- Candidate B: explicit field-level replacement text with inspected locators.
+- Candidate C: machine-readable JSON Patch, where its application route is practical.
 
-## 6. Product principles
+No candidate is the design default. Test the same bounded synthetic card and authorized change through the viable candidates. Assess unauthorized changes, missing fields, paths/IDs, escaping, truncation, user effort and the final usable artifact. A patch is not itself a finished importable card; account for applying it. A visually plausible JSON block is not parser or import evidence.
 
-### 6.1 Preserve the shared Yuri policy
+The test outcome may support one default, a conditional policy, or a narrower supported scope. Record the tested host/model, input revision and output limitations; do not generalize a single small-card result to arbitrary cards or all hosts. See the feature matrix and shared contracts for the decision gate.
 
-The Full and Lite editions should align on:
-- the user's selected definition of women and eligible characters;
-- main-cast and background-character scope;
-- relationship changes only when supported by the authorized adaptation policy and causal circumstances;
-- no inference of romance from hostility or kinship;
-- preservation of source uncertainty;
-- explicit distinction between source fact, inference and invention;
-- player agency and authorization boundaries;
-- user control over protected anchors and material changes.
+Do not split a JSON string arbitrarily or call numbered fragments a complete export. When output capacity is insufficient, preserve progress and state exactly what remains. Multipart assembly is another delivery path to test, not a guaranteed workaround.
 
-The canonical policy wording and version identifier will be defined in `LITE_SHARED_CONTRACTS.md`. A change to a shared policy requires review for both editions.
+## 5. Sequential novel processing
 
-### 6.2 Conversational-first, not form-first
+Process one novel project over successive bounded chapter batches, with explicit conversational checkpoints after each completed batch and before a context/session handoff. This is not a batch service for unrelated books.
 
-Users should be able to express goals in ordinary language. Structured profiles and records are optional aids, not mandatory forms. Ask only for a decision that materially affects the result and cannot safely be inferred.
+Keep three separate scopes:
 
-### 6.3 Honest capability reporting
+1. The user's total authorized goal, such as chapters 1–12.
+2. Material currently supplied and actually accessible.
+3. The current processing batch, such as chapters 1–2.
 
-A workflow must distinguish:
-- material supplied;
-- material actually visible/read;
-- material processed;
-- material not supplied or not processed;
-- output generated;
-- output independently validated (if any).
+A smaller batch does not reduce the agreed deliverable. If later chapters are unavailable, checkpoint and request the missing material when needed; do not invent it, mark it reviewed or promise background work.
 
-Model self-review is not a substitute for parser validation or real SillyTavern import.
+Each checkpoint must preserve source edition, chapter/segment coverage, next unread location, stable character aliases, chronology, relationship changes, evidence locators, user decisions, adaptation choices, protected anchors, draft revision and unresolved issues. Keep source facts and adapted fiction separate. Distinguish author knowledge from what a character can know at the intended opening stage.
 
-### 6.4 Conservative editing
+Resuming must reconcile the checkpoint with accessible source material and newer explicit user decisions. Detect missing, overlapping, reordered or revised chapters. Do not silently overwrite conflicts or reopen settled creative choices. A compact checkpoint is a continuity aid, not a replacement for the original evidence. The shared contract defines the required protocol.
 
-For existing cards, preserve supplied content outside the authorized edit scope as far as the host's visible document and output limits permit. When complete input or output cannot be handled reliably, stop and offer a smaller explicit scope or a patch rather than inventing a lossless result.
+Test at least one bounded synthetic multi-chapter source across a fresh conversation, including a later correction or contradiction. Do not describe the feature as verified merely because a checkpoint template exists.
 
-## 7. Relationship to Full and upstream TavernWeave
+## 6. Required distributions
 
-- Repository 2 remains the canonical home for Full and Lite product development.
-- Lite has its own self-contained instructions and references under `distributions/chat-mode-lite/`.
-- Lite must not require loading Full scripts or the 23 upstream skill dependencies at runtime.
-- Upstream TavernWeave methods may inform the design, but reused text/assets must retain applicable licensing and notices. Prefer original concise instructions that express the required behavior.
-- Generated Full host distributions must not include Lite unless explicitly designed and released to do so.
-- The frozen standalone Repository 1 is historical reference material, not a source to synchronize automatically.
+Maintain one Lite core and three installation/setup forms:
 
-## 8. Initial acceptance criteria
+| Distribution | Required deliverables | Boundary |
+| --- | --- | --- |
+| Portable conversation | Self-contained starter instructions, workflow references, checkpoint template and resume prompt | Works through pasted text; no attachment or plugin loader required. |
+| ChatGPT Projects | `PROJECT_INSTRUCTIONS.md`, setup guide, upload map, compact reference pack and checkpoint/resume guide | User applies instructions and adds files in their project; no automatic account setup or guaranteed retrieval of every file. |
+| Custom GPT compatibility | `GPT_INSTRUCTIONS.md`, name/description/starters, knowledge upload map, capability settings, setup/Preview guide and migration notes | Preparation is required; deployment depends on current account eligibility, editing availability and platform lifecycle. |
 
-Lite 0.1.0 is ready for release consideration when:
-1. All four workflows can be followed from their Lite instructions without CLI/runtime dependencies.
-2. Each workflow uses the same shared Yuri policy and evidence conventions.
-3. No mandatory instruction calls unavailable scripts, tools, upstream skills or host-specific commands.
-4. JSON adaptation explicitly states its best-effort preservation boundary.
-5. Post and novel workflows accurately identify the supplied/processed scope.
-6. Large inputs and outputs have an explicit continuation/partial-output protocol.
-7. Chinese and English user-facing instructions agree on behavior and limitations.
-8. Static review and conversational acceptance results are recorded separately from actual SillyTavern import evidence.
-9. Licensing and third-party notices are complete.
+Put essential behavioral rules, routing and checkpoint requirements in the actual host instruction field. Knowledge/reference files hold supporting detail and examples, not the only copy of mandatory rules. Merely uploading a file named `CORE.md` does not establish that its instructions are active.
 
-## 9. Release boundary
+Project context can assist continuation, but the explicit checkpoint remains the portable state. Custom GPT continuation must work when the next conversation starts without prior history. User-specific chapters/cards and session checkpoints must not be bundled as public GPT knowledge.
 
-The initial target is **Lite 0.1.0**, an independently identifiable edition. It does not change the Full product version, Full source, existing plugin branches or existing releases. Release authorization and publication remain a separate human-controlled step.
+Both tailored packages must use the same canonical policy and workflow versions. Provide plain-language setup and text fallback, not a claimed one-click ZIP import. Keep user-facing instructions available in Chinese and English. Avoid hard-coded host limits unless dated and verified during packaging.
+
+### Current platform lifecycle note
+
+Official OpenAI guidance checked on 2026-11-14 announces Custom GPT retirement scheduled for December 11, 2026, with specified exceptions/deferrals, and account-dependent creation/migration restrictions. Therefore retain D3's Custom GPT package as a compatibility/migration deliverable, not a promise that every user can create a new GPT. Projects and the portable text edition provide independent deployment routes. Follow the user's actual workspace notice and recheck before release. This design does not create a plugin, GPT or Project in the user's account.
+
+## 7. Relationship to Full
+
+A read-only review of `yuri-dev` at `e8b00854654f504938e28da98340419cbd83d07e` found that Full already supports repeated `--chapter`, explicit `--all`, and reading source units across checkpoints. Do not describe multi-chapter processing as wholly absent or add a fifth novel skill.
+
+Recommend a separate Full follow-up that formalizes the same continuation semantics: a discoverable resume record, source/scope/profile consistency, stage-bounded knowledge, repeated-resume behavior and later-chapter corrections. Map these onto Full's existing provenance and creative authority; do not create a second authoritative fact store or replace exact evidence bindings with a Lite summary.
+
+The reviewed novel CLI exposes `index` and `init`, not a demonstrated append/resume operation. Existing guidance alone does not prove a tested new-session recovery path. Audit the shared facilities before adding code. Extending an already registered source scope must preserve original bindings through a reviewed revision/registration design rather than silently mutating a frozen source.
+
+This is a recommendation for a separately scoped Full change, not authorization to modify Full in the Lite design branch. Record the latest development commit separately from the released 1.2.0 baseline.
+
+## 8. Acceptance and release gates
+
+Release consideration requires:
+
+1. Four self-contained workflows with no required CLI/runtime dependencies.
+2. D1's output decision supported by actual bounded trials, with unsupported formats/hosts explicitly identified.
+3. D2's sequential processing, checkpoint restore, source coverage and contradiction handling exercised in a fresh conversation.
+4. Portable, Projects and Custom GPT compatibility packages prepared with the same policy; unavailable deployment tests marked blocked/unverified rather than passed.
+5. Chinese/English behavior parity, source fidelity, player agency and preservation limits checked.
+6. Actual evidence distinguished: static review, model trial, parser/diff check, real host setup, SillyTavern import and human roleplay feedback.
+7. Licenses and notices preserved; rewritten or condensed upstream-derived material is not assumed to become MIT automatically.
+
+Use cost-effective GPT testing instances, bounded synthetic fixtures and the smallest changed-surface checks. Do not repeat the prior Full import/roleplay campaign or use this expensive authoring instance for material trials.
+
+The target remains Lite 0.1.0. This design revision changes no Full version, release, production source or installation branch. Implementation, account deployment and release approval are separate from recording the user's decisions.
+
+## 9. Evidence and references
+
+- [Feature decisions](LITE_FEATURE_MATRIX.md), [shared contracts](LITE_SHARED_CONTRACTS.md), [agent assignments](LITE_AGENT_ASSIGNMENTS.md).
+- [Full novel workflow at reviewed commit](https://github.com/imbdsssity/TavernWeave-Yuri/blob/e8b00854654f504938e28da98340419cbd83d07e/extensions/yuri-creation/skills/novel-excerpt-to-yuri-card/SKILL.md).
+- [Full input/scope guidance](https://github.com/imbdsssity/TavernWeave-Yuri/blob/e8b00854654f504938e28da98340419cbd83d07e/extensions/yuri-creation/references/novel-inputs.md).
+- [Full novel CLI](https://github.com/imbdsssity/TavernWeave-Yuri/blob/e8b00854654f504938e28da98340419cbd83d07e/extensions/yuri-creation/scripts/novel_source.py).
+- Official host documentation, checked 2026-11-14: [Projects](https://help.openai.com/en/articles/10169521-projects-in-chatgpt), [GPT configuration](https://help.openai.com/en/articles/8554397-creating-and-editing-gpts), [GPT conversation behavior](https://help.openai.com/en/articles/8554407-gpts-in-chatgpt), [retirement/migration FAQ](https://help.openai.com/en/articles/20001519-custom-gpt-retirement-and-migration-faq). These describe host behavior, not a completed Lite deployment test.
