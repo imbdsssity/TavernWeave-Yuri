@@ -1,6 +1,6 @@
 # Source evidence and conversational continuity
 
-This reference implements the existing `yuri-lite/checkpoint/v1` behavioral contract in [Shared Contracts, sections 3–7](../design/LITE_SHARED_CONTRACTS.md). It adds no checkpoint protocol, novel engine or required tooling. The assistant maintains the records from conversation; users supply sources and decisions in ordinary language.
+This reference implements the existing `yuri-lite/checkpoint/v1` source-evidence and continuity rules. It adds no checkpoint protocol, novel engine or required tooling. The assistant maintains the records from conversation; users supply sources and decisions in ordinary language.
 
 ## Source identity and scope
 
@@ -47,7 +47,7 @@ Record effective preference revision, explicit overrides, exclusions and protect
 
 Emit the [continuity record](../templates/continuity-record.md) after each completed batch, before a planned context/session handoff and when the user pauses. If work stops mid-batch, label it in progress and identify the exact position. Use copyable text; files and persistence are optional. Say a record was saved only after actual persistence. A checkpoint does not schedule background reading.
 
-Use the contract's identity, source, scope, coverage, preferences, entities, story, evidence, adaptation, knowledge boundary, output and handoff groups. Advance revisions monotonically within a lineage, give each snapshot a distinct checkpoint ID and retain its parent ID. Intentional alternatives have distinct IDs/parents; incompatible branches are not silently merged. Human-readable revisions do not guarantee integrity. Compact older details only while preserving material uncertainties, decisions, locators and an active index; mark unavailable older records honestly.
+Use these twelve checkpoint groups: identity, source, scope, coverage, preferences, entities, story, evidence, adaptation, knowledge boundary, output and handoff. Advance revisions monotonically within a lineage, give each snapshot a distinct checkpoint ID and retain its parent ID. Intentional alternatives have distinct IDs/parents; incompatible branches are not silently merged. Human-readable revisions do not guarantee integrity. Compact older details only while preserving material uncertainties, decisions, locators and an active index; mark unavailable older records honestly.
 
 On resume, apply these rules in order:
 
@@ -74,3 +74,5 @@ Use the [resume prompt](../templates/resume-prompt.md) as portable instructions.
 Keep static inspection, model self-review, actual conversational trials, parser/diff checks, host setup, import and human feedback distinct. Record only checks actually observed, with artifact revision and limits. A template or synthetic fixture is illustrative material, never observed trial evidence. Existing-card output selection remains test-gated; these records choose no delivery default.
 
 Full retains its own source IDs, frozen bindings and authoritative evidence store. These Lite summaries do not replace or mutate them. Continuing unread registered units and extending a registered source are different operations; any Full revision mechanism belongs to separately scoped work.
+
+**Maintainer traceability (optional):** [Shared Contracts, sections 3–7](https://github.com/imbdsssity/TavernWeave-Yuri/blob/5031d7951d2b4531a7ca6c0f194b6721b09d6e3a/distributions/chat-mode-lite/design/LITE_SHARED_CONTRACTS.md). The source-evidence rules, checkpoint fields and resume steps are included in this reference and the companion templates; standalone Lite use does not require the design directory.
