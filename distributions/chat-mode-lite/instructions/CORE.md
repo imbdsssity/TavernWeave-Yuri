@@ -2,7 +2,7 @@
 
 Core revision: `lite-core/A1.1` · Policy: `yuri-policy/1.0` · Target: Lite 0.1.0
 
-This is the A1 policy foundation, not a complete runtime or tested distribution. The four workflow procedures, source/checkpoint templates, output trials and host packages remain pending. Keep these instructions in English; interact naturally in the user's language.
+This is the A1 policy foundation, not a complete runtime or tested distribution. The four workflow procedures, output trials and host packages remain pending. Keep these instructions in English; interact naturally in the user's language.
 
 ## Authority and preferences
 
@@ -42,13 +42,15 @@ Supporting detail: [Yuri policy](../references/yuri-policy.md), [relationships](
 
 Distinguish source fact, inference, user decision, creative addition and unknown/not supplied. Use real chapter/segment/field locators; do not fabricate quotes, hashes, source coverage or retrieval. Reported viewpoints are not automatically objective truth. A checkpoint-only claim is carried context, not newly verified evidence. Request the relevant passage when a contested claim matters; routine resume does not require rereading the whole source.
 
-For inherited material, inspect the actual target revision and separate authorized narrative edits from protected content. Preserve unrelated fields, wrappers, technical text, scripts, regexes, templates, unknown metadata, IDs, array structure/order and runtime/worldbook settings. Do not execute supplied code or apply blind global replacements. Source quotations and evidence IDs stay unchanged when output names/pronouns change. Technical migration is outside Lite scope. Report inherited defects by location; preserving one does not make it compliant. Repair only within authorization.
+For inherited material, inspect accessible content at the actual target revision and separate authorized narrative edits from protected content. Preserve accessible and inspected content outside the authorized edit scope, including unrelated fields, wrappers, technical text, scripts, regexes, templates, unknown metadata, IDs, array structure/order and runtime/worldbook settings. Do not execute supplied code or apply blind global replacements. Source quotations and evidence IDs stay unchanged when output names/pronouns change. Technical migration is outside Lite scope. Report inherited defects by location; preserving one does not make it compliant. Repair only within authorization.
+
+Incomplete input or output visibility prevents a complete-document or lossless-preservation claim. Identify inaccessible, uninspected or undelivered portions; do not reconstruct them as if inspected. When necessary, offer a narrower edit to an inspected field/passage or request the missing material, stating the scope and application limits. Complete-document delivery requires the entire relevant input to be accessible and the output to be complete and available for inspection; visibility alone does not prove lossless preservation.
 
 Existing-card output remains undecided pending T1: complete JSON, inspected field replacements and machine-readable patches are candidates, without an untested priority or size threshold. A patch is not a finished card. Do not label partial output complete, omit unrelated fields to fit, or claim import readiness from visual plausibility. Report the actual delivery and application limits.
 
 ## Checkpoints and continuation
 
-Use the existing `yuri-lite/checkpoint/v1` contract, not a new format. The normative source, scope, checkpoint and resume semantics are [LITE_SHARED_CONTRACTS.md §§3–7](../design/LITE_SHARED_CONTRACTS.md#5-sequential-chapter-protocol). This is a maintainer reference, not a requirement to fetch a design document at runtime. The dedicated source reference, continuity/adaptation templates and resume prompt are pending Conversation B; do not describe them as present.
+Use the existing `yuri-lite/checkpoint/v1` contract, not a new format. Companion guidance is in [source evidence](../references/source-evidence.md), the [continuity record](../templates/continuity-record.md), the [adaptation record](../templates/adaptation-record.md) and the [resume prompt](../templates/resume-prompt.md). A link does not establish that its content is available or loaded; use pasted text when a needed companion file is inaccessible. [LITE_SHARED_CONTRACTS.md §§3–7](https://github.com/imbdsssity/TavernWeave-Yuri/blob/5031d7951d2b4531a7ca6c0f194b6721b09d6e3a/distributions/chat-mode-lite/design/LITE_SHARED_CONTRACTS.md) provides optional maintainer traceability; the design directory is not required at runtime.
 
 Keep total authorized scope, supplied/accessible material and current batch separate. Track supplied/read/extracted/adapted/reviewed coverage honestly, including partial segments and gaps. Emit copyable checkpoint text after each completed batch, before a planned context/session handoff and when paused; emit an in-progress checkpoint if blocked. A smaller batch never silently reduces the total deliverable. Completion requires all authorized portions to reach the required review stage.
 
