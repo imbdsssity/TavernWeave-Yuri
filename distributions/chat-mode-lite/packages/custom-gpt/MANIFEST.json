@@ -1,0 +1,215 @@
+{
+  "schema": "lite-package-inventory/1",
+  "versions": {
+    "package": "lite-packages/C.1",
+    "core": "lite-core/A1.1",
+    "integration": "lite-pre-c/1",
+    "policy": "yuri-policy/1.0",
+    "cards": "lite-card-workflows/A2.1",
+    "sources": "lite-source/B2.1",
+    "checkpoint": "yuri-lite/checkpoint/v1"
+  },
+  "source_base": "4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95",
+  "host": "custom-gpt",
+  "state": "unreleased-preparation",
+  "active_entry": "GPT_INSTRUCTIONS.md",
+  "instruction_characters": 7895,
+  "instruction_utf8_bytes": 7897,
+  "local_instruction_design_budget": 7900,
+  "official_instruction_limit_verified": false,
+  "reference_upload_files": [
+    "REFERENCE_PACK.md"
+  ],
+  "sources": [
+    {
+      "canonical_path": "instructions/CORE.md",
+      "base_git_blob": "b8be7d82d36fdb37a6eadb502c2d6d008b927815",
+      "source_sha256": "2ce21308e86d5a56242ef09922b6481956af737a1364a998e90c9550b35eb5e2",
+      "source_bytes": 12369,
+      "pack_anchor": "source-instructions-core-md",
+      "rendered_sha256": "0df6e2d5ff0266f5dcb1752f2d6270f03c4fe9ea54aa4a4f251f04af37e5ec1d"
+    },
+    {
+      "canonical_path": "instructions/CREATION.md",
+      "base_git_blob": "6f2b1b2bda834b0763a69f02bfb3de31e8b93841",
+      "source_sha256": "94f22ce3ac17a1c86207ff264fff6d10720c7fcc20f3b096073aaef91a0c1a90",
+      "source_bytes": 6740,
+      "pack_anchor": "source-instructions-creation-md",
+      "rendered_sha256": "54da195f2609bdeafac63c936e41267a358e7d29eb8c10432c69e37c6545841b"
+    },
+    {
+      "canonical_path": "instructions/ADAPTATION.md",
+      "base_git_blob": "7b50366a4269a8ab416f938173237a4b2411e13c",
+      "source_sha256": "8f7f49513b7dfba17aa99624836d1a5ce25daa85ded46b9b29e1ec3e40ea50f2",
+      "source_bytes": 8275,
+      "pack_anchor": "source-instructions-adaptation-md",
+      "rendered_sha256": "c1af8912e364aa74e3a60c55a4c785753fa3ccbd58937da54833b2987a76a2a4"
+    },
+    {
+      "canonical_path": "instructions/POST.md",
+      "base_git_blob": "ff7c346bc8b0c1c7473a5e153fc5f7b28fd026ca",
+      "source_sha256": "80f3c71994aefbb13e9b43fa07b106aa3076c6132dfbb260827466719841a786",
+      "source_bytes": 10608,
+      "pack_anchor": "source-instructions-post-md",
+      "rendered_sha256": "710d0f60936f0490b35d90db9d3304bb3618ddb66cf0f58694f8afb0fa87667e"
+    },
+    {
+      "canonical_path": "instructions/NOVEL.md",
+      "base_git_blob": "fe20a0d5a771d42fc347279977ce7153fc508f15",
+      "source_sha256": "811420ec1499fbf99226cf58826beb910d832d50666795802a3cd32802de9f8c",
+      "source_bytes": 15776,
+      "pack_anchor": "source-instructions-novel-md",
+      "rendered_sha256": "0178ab5a83dcc3e4f00af3ad8d4777d972a4a8efe8ab42face48f26de816a50d"
+    },
+    {
+      "canonical_path": "references/yuri-policy.md",
+      "base_git_blob": "d0e8cd887dcc0bf3b79d3c1f663c006ac1bb405f",
+      "source_sha256": "5a7c34f7021a1f0cfdece3af8405587161921178033853714e06775642366f4d",
+      "source_bytes": 5322,
+      "pack_anchor": "source-references-yuri-policy-md",
+      "rendered_sha256": "2e21aa89294457b5320cace9f9fc66286093916f1f9e579dba0dc5cfe100495d"
+    },
+    {
+      "canonical_path": "references/relationship-rules.md",
+      "base_git_blob": "fd8563f457825b069470bd5079b9fbb474b51c15",
+      "source_sha256": "333fac97cdfe41a4f75f5e5c8d6ba9bc3313e37ae7309fb7db02b1ba9ca6dead",
+      "source_bytes": 3741,
+      "pack_anchor": "source-references-relationship-rules-md",
+      "rendered_sha256": "120d0e34a0135aa00af1e7cdf2d9f3ed788d1ed7dc1dba15ae4698e765b20814"
+    },
+    {
+      "canonical_path": "references/player-agency.md",
+      "base_git_blob": "e28b775f5178b5dc362fb88fb392f44f1c5af54e",
+      "source_sha256": "e22a537e3b89022fb488b7811a38cac5618d0205adb59d84a90e5ca81f88e0ee",
+      "source_bytes": 3853,
+      "pack_anchor": "source-references-player-agency-md",
+      "rendered_sha256": "62126bf125d238dba9a59f3d4c20982c9e2e2078fd675a5cd3b2b2904544104f"
+    },
+    {
+      "canonical_path": "references/character-design.md",
+      "base_git_blob": "4cb58c9fd69d19532f8b051fd5797986163cd487",
+      "source_sha256": "00ae35683ef4ddaa5b591f6e4dd375c0ea50ec3eed9aca1af1062cba70e2026d",
+      "source_bytes": 4807,
+      "pack_anchor": "source-references-character-design-md",
+      "rendered_sha256": "90b48beadf97d3f17b351dacf10688702ebae8b0306d9ca16cf9b9da5194a93a"
+    },
+    {
+      "canonical_path": "references/worldbook-design.md",
+      "base_git_blob": "16d84a2d5da242924cc907961234b4a924dfa981",
+      "source_sha256": "a8d37d40dab912f4fbb0be8462c798040d8de3379c6e52f3c92e9a1ae9aa9aa4",
+      "source_bytes": 5414,
+      "pack_anchor": "source-references-worldbook-design-md",
+      "rendered_sha256": "3040922b0db3866288b48df2c0e3a3acb061e7fbf39ef0e7fa60e4bbdcd4f7b5"
+    },
+    {
+      "canonical_path": "references/card-output.md",
+      "base_git_blob": "0396668ec3786035769725a6430fb2cdbe019291",
+      "source_sha256": "4194c36ab8cbe25d64b16d74e14df1a1070553f551fc826483f941d37569b286",
+      "source_bytes": 8798,
+      "pack_anchor": "source-references-card-output-md",
+      "rendered_sha256": "25d5c5ab5ca0998b66d957e3530f82bc4c3e291f196391effe34c4ff99f991a9"
+    },
+    {
+      "canonical_path": "references/source-evidence.md",
+      "base_git_blob": "abe4c4a992ae68aea15c38758c5f42ea261a96c6",
+      "source_sha256": "e84820c3800af6467ff28153d8bf87493e7f254e6860ab65ffa886537303402f",
+      "source_bytes": 11533,
+      "pack_anchor": "source-references-source-evidence-md",
+      "rendered_sha256": "0b86c5116be8524bb6afc4e5a9bba2dc66cc26547324f6cd92c127dc8da4d7b9"
+    },
+    {
+      "canonical_path": "templates/preferences.json",
+      "base_git_blob": "c8e814d5f146f227c1c7025a9f18b3efea6c645c",
+      "source_sha256": "3bda397ea11b847b09e69e6254390c5755198c0187b1762f6d775f37ce16b215",
+      "source_bytes": 798,
+      "pack_anchor": "source-templates-preferences-json",
+      "rendered_sha256": "8e3e8fb1aae54753c50b23dd2f8c7c033d568ec52c0048a36f83e55941a1edd5"
+    },
+    {
+      "canonical_path": "templates/adaptation-record.md",
+      "base_git_blob": "2d886bf5eca9ddebf46ace6aafd41e4ec131cc19",
+      "source_sha256": "f0490fa8bf7e86db06c587364fb7f92aeaf1ee2d2c4d54ae1475d5632356205b",
+      "source_bytes": 5208,
+      "pack_anchor": "source-templates-adaptation-record-md",
+      "rendered_sha256": "31e3631e52d19104b43b9500ba8f91cf995af10c1f9e48b0bb26125b32f8ad73"
+    },
+    {
+      "canonical_path": "templates/continuity-record.md",
+      "base_git_blob": "25858d9eda7658c4f06477190ad9b61a66779c49",
+      "source_sha256": "ce7915bf6e93afff2c2bcdd0515e21b0fe8581309f8d4d026132f3caa9f4f9fb",
+      "source_bytes": 8558,
+      "pack_anchor": "source-templates-continuity-record-md",
+      "rendered_sha256": "cf4dac80acb24e59c20404af808ac2246328c643aa2809bfd30aac2c2ae1a402"
+    },
+    {
+      "canonical_path": "templates/resume-prompt.md",
+      "base_git_blob": "1de3dd811b6a189cc409767506bcf1ee2b67d5a6",
+      "source_sha256": "452b69be3c42f00ba602f6615118ae92e64d2ab7aa85909253db27fbccfdd715",
+      "source_bytes": 3981,
+      "pack_anchor": "source-templates-resume-prompt-md",
+      "rendered_sha256": "452b69be3c42f00ba602f6615118ae92e64d2ab7aa85909253db27fbccfdd715"
+    }
+  ],
+  "excluded_content": [
+    "design",
+    "examples",
+    "qa",
+    "private casework",
+    "real checkpoints",
+    "Full runtime"
+  ],
+  "gates": {
+    "T1": "unperformed; output undecided",
+    "T2": "unperformed",
+    "T3": "unperformed; account eligibility unverified",
+    "SillyTavern_import": "unperformed",
+    "human_roleplay": "unperformed"
+  },
+  "inventory_note": "Manifest excludes itself to avoid a recursive digest. Hashes are maintainer-computed packaging checks, not runtime evidence of source reading or host acceptance.",
+  "files": {
+    "COMPATIBILITY_AND_MIGRATION.md": {
+      "bytes": 2217,
+      "sha256": "3d325e1b325eb4106a3899429f344a6676041917606f17c0bc237d816daf76a9"
+    },
+    "CONFIGURATION.md": {
+      "bytes": 3762,
+      "sha256": "ffb0d34d479f4c2de637642dcf61bc3a057d3857ece958910b125f3472e021d9"
+    },
+    "GPT_INSTRUCTIONS.md": {
+      "bytes": 7897,
+      "sha256": "007ec897f14a616f452d5de073ac898de2fc490dc979874054777a9cee2b2c46"
+    },
+    "HOST_REQUIREMENTS.md": {
+      "bytes": 4429,
+      "sha256": "f227f1770a526c66342950d17db43bcc01fa2beec54882ed9b07fd4d6972b85a"
+    },
+    "KNOWLEDGE_MAP.md": {
+      "bytes": 2818,
+      "sha256": "b90003a0d05300d172771616ed2067a1d78041c1bed32a1de8818846ed03ae50"
+    },
+    "LICENSE": {
+      "bytes": 4574,
+      "sha256": "306f6b88b74ebee4afb142f77ce3164ee585cb18f49dc1637da44eb3384dfa42"
+    },
+    "PREVIEW_TESTS.md": {
+      "bytes": 3257,
+      "sha256": "60507516a8ea9ff6112a412a58c27bb433b76a7382597b89984fc0a9b30db499"
+    },
+    "REFERENCE_PACK.md": {
+      "bytes": 121145,
+      "sha256": "bf873f0b0383ccc1fe5ae091ddbfd3b631dcb3eeabcd659c88b7855b7582e977"
+    },
+    "SOURCE_MAP.md": {
+      "bytes": 2191,
+      "sha256": "8a2135f0bfa5f8dc36c179c5c544c94c0ea11547b564cc1233de228b627a98b4"
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "bytes": 4255,
+      "sha256": "b522fd68af0b2591bad17eb9f645c024d865353f7d4e17edc7c553a7c3be2a4b"
+    },
+    "licenses/YURI-MIT.txt": {
+      "bytes": 1089,
+      "sha256": "a03cfd83bfc7f45fa952d8b2d18c3071b97daec8121497cfffab5d7a84f537b7"
+    }
+  }
+}
