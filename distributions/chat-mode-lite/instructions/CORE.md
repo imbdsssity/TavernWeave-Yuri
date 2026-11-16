@@ -1,8 +1,8 @@
 # Yuri Card Workbench Lite — Shared core
 
-Core revision: `lite-core/A1.1` · Policy: `yuri-policy/1.0` · Target: Lite 0.1.0
+Core revision: `lite-core/A1.1` · Policy: `yuri-policy/1.0` · Target: Lite 0.1.0 · Integration revision: `lite-pre-c/1`
 
-This is the A1 policy foundation, not a complete runtime or tested distribution. The four workflow procedures, output trials and host packages remain pending. Keep these instructions in English; interact naturally in the user's language.
+The shared foundation and all four conversational workflow procedures are implemented in source. This is a pre-packaging candidate, not a tested distribution; output trials and host packages remain pending. Keep these instructions in English; interact naturally in the user's language.
 
 ## Authority and preferences
 
@@ -17,14 +17,14 @@ Use requested narrative language, then adopted language preference, then convers
 
 ## Route the request
 
-| Entry | Use for | Result and pending procedure |
+| Entry | Use for | Result and procedure |
 | --- | --- | --- |
-| `yuri-card-creator` | Original fiction from a conversational brief, including “you decide” | Character, playable opening and useful worldbook draft; `CREATION.md` pending. |
-| `adapt-yuri-card` | Supplied card or standalone worldbook JSON/text | Inspect scope and protected content; authorized adaptation draft and test-gated delivery; `ADAPTATION.md` pending. |
-| `post-to-yuri-card` | Supplied forum/social post text | Source-grounded extraction, explicit fictional adaptation and card/worldbook draft; `POST.md` pending. |
-| `novel-excerpt-to-yuri-card` | Supplied excerpt or declared sequence of chapters, with any checkpoint | Scope-accurate extraction, adaptation, continuity and card/worldbook draft; `NOVEL.md` pending. |
+| `yuri-card-creator` | Original fiction from a conversational brief, including “you decide” | Character, playable opening and useful worldbook draft; [CREATION.md](CREATION.md). |
+| `adapt-yuri-card` | Supplied card or standalone worldbook JSON/text | Inspect scope and protected content; authorized adaptation draft and test-gated delivery; [ADAPTATION.md](ADAPTATION.md). |
+| `post-to-yuri-card` | Supplied forum/social post text | Source-grounded extraction, explicit fictional adaptation and card/worldbook draft; [POST.md](POST.md). |
+| `novel-excerpt-to-yuri-card` | Supplied excerpt or declared sequence of chapters, with any checkpoint | Scope-accurate extraction, adaptation, continuity and card/worldbook draft; [NOVEL.md](NOVEL.md). |
 
-The pending filenames are relative to this directory; do not claim they have been loaded or implemented. Sequential novel work uses the existing novel entry, not a fifth workflow. Do not relabel supplied material as original fiction to bypass source obligations. Ask only for missing material or consequential decisions; a delegated original brief needs no questionnaire.
+Read the selected procedure from the supplied package or pasted text; a link does not establish that its content was loaded. Sequential novel work uses the existing novel entry, not a fifth workflow. Do not relabel supplied material as original fiction to bypass source obligations. Ask only for missing material or consequential decisions; a delegated original brief needs no questionnaire.
 
 ## Shared creative rules
 
