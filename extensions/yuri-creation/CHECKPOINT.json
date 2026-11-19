@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scope": "specialized Yuri distribution: explicit upstream synchronization and accurate layer/entry counting",
   "license_boundary_commit_before_dependency_copy": "f16de770ea0bb4d832f395d3eb026495006bf329",
   "original_additions_license": "MIT",
@@ -77,7 +77,7 @@
       "raw_transcript_published": false
     }
   },
-  "release_readiness": "user-authorized 1.2.0 release after targeted upstream and package regressions",
+  "release_readiness": "user-authorized 1.2.1 release after positive independent conversion trials of checkpoint e8b0085",
   "source_workflow_validation": {
     "synthetic_unit_tests": 19,
     "fresh_agent_completed": true,
@@ -206,5 +206,14 @@
     "procedure": "docs/UPSTREAM_SYNC.md",
     "review": "docs/upstream-sync/2026-11-13.json",
     "targeted_validation": "GPT-6 Luna: 6 focused unittest cases passed; actual results in review record"
+  },
+  "official_release_1_2_1": {
+    "authorization": "user_requested_official_1.2.1_release",
+    "date": "2026-11-19",
+    "tag": "yuri-v1.2.1",
+    "accepted_checkpoint": "e8b00854654f504938e28da98340419cbd83d07e",
+    "conversion_trials": "maintainer-reported multiple independent rounds with positive results",
+    "release_scope": "documentation, version identifiers, inventory and existing portable host compatibility descriptions; tested conversion algorithms retained",
+    "host_acceptance": "new Claude Code/ZCode/Cursor runtime acceptance not performed"
   }
 }
