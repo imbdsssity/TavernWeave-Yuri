@@ -4,8 +4,10 @@ Use the unchanged Foreverse MIT chunk writer; preserve every unrelated PNG chunk
 and JSON value. Semantic adaptation remains the agent's work.
 """
 import base64
+from bisect import bisect_left
 from collections import Counter
 import copy
+from html.parser import HTMLParser
 import json
 import os
 from pathlib import Path
@@ -20,7 +22,10 @@ LIMIT = 64 * 1024 * 1024
 PROSE = {"name", "description", "personality", "scenario", "first_mes", "mes_example",
          "system_prompt", "post_history_instructions", "creator_notes"}
 GREETINGS = {"alternate_greetings", "group_only_greetings"}
+FIELDS = PROSE | GREETINGS | {"tags"}
 CODE = re.compile(r"```[\s\S]*?```|<script\b[^>]*>[\s\S]*?</script\s*>|<style\b[^>]*>[\s\S]*?</style\s*>", re.I)
+FENCE = re.compile(r"(?m)^(?P<open>[ \t]{0,3}(?P<mark>`{3,}|~{3,})(?P<info>[^\r\n]*)\r?\n)(?P<body>[\s\S]*?)(?P<close>^[ \t]{0,3}(?P=mark)[ \t]*(?:\r?\n|$))")
+MACROS = re.compile(r"\{\{[\s\S]*?\}\}|<%[\s\S]*?%>|\$\{[^}]*\}")
 
 
 def loads(raw):
@@ -134,8 +139,8 @@ def get(doc, parts):
 def editable(doc, parts):
     kind, root = shape(doc)
     relative = parts[1:] if root and parts[:1] == ["data"] else parts
-    if kind == "card" and relative and (not root or parts[:1] == ["data"] or relative[0] in PROSE | GREETINGS):
-        if len(relative) == 1 and relative[0] in PROSE | GREETINGS:
+    if kind == "card" and relative and (not root or parts[:1] == ["data"] or relative[0] in FIELDS):
+        if len(relative) == 1 and relative[0] in FIELDS:
             return True
         if len(relative) == 2 and relative[0] in GREETINGS:
             return True
@@ -149,11 +154,143 @@ def editable(doc, parts):
             and relative[2] in ("content", "comment", "name", "keys", "key", "secondary_keys", "keysecondary"))
 
 
-def protect_code(before, after):
+class HTMLSkeleton(HTMLParser):
+    """Compare inert markup tokens; never render HTML or execute embedded code."""
+    def __init__(self, source):
+        super().__init__(convert_charrefs=False)
+        self.source, self.tokens, self.active = source, [], None
+        self.positions = []
+        self.offsets = [0]
+        for match in re.finditer("\n", source):
+            self.offsets.append(match.end())
+
+    def emit(self, token):
+        line, column = self.getpos()
+        self.tokens.append(token)
+        self.positions.append(self.offsets[line - 1] + column)
+
+    def raw_token(self, ending=">"):
+        line, column = self.getpos(); start = self.offsets[line - 1] + column
+        end = self.source.find(ending, start)
+        p.require(end >= 0, "Incomplete HTML token")
+        return self.source[start:end + len(ending)]
+
+    def handle_starttag(self, tag, attrs):
+        self.emit(self.get_starttag_text())
+        if tag in ("script", "style"):
+            self.active = tag
+
+    def handle_startendtag(self, tag, attrs):
+        p.require(tag not in ("script", "style"), "Self-closing script/style markup requires a separately scoped engineering edit")
+        self.emit(self.get_starttag_text())
+
+    def handle_endtag(self, tag):
+        self.emit(self.raw_token())
+        if tag == self.active:
+            self.active = None
+
+    def handle_data(self, data):
+        if self.active:
+            self.emit(data)
+
+    def handle_entityref(self, name):
+        if self.active: self.emit("&" + name + ";")
+
+    def handle_charref(self, name):
+        if self.active: self.emit("&#" + name + ";")
+
+    def handle_comment(self, data):
+        self.emit(self.raw_token("-->"))
+
+    def handle_decl(self, decl):
+        self.emit(self.raw_token())
+
+    def handle_pi(self, data):
+        self.emit(self.raw_token())
+
+    def unknown_decl(self, data):
+        raise ValueError("Unsupported HTML declaration; use a separately scoped engineering edit")
+
+
+def html_signature(text):
+    fences = []
+    def replace(match):
+        language = match["info"].strip().lower()
+        allowed = language in ("html", "htm")
+        fences.append((match["open"], match["close"], "" if allowed else match["body"]))
+        return match["body"] if allowed else "\n"
+    rendered = FENCE.sub(replace, text)
+    p.require(not re.search(r"(?m)^[ \t]{0,3}(?:`{3,}|~{3,})", rendered), "Unmatched or unsupported fence delimiters")
+    parser = HTMLSkeleton(rendered); parser.feed(rendered); parser.close()
+    p.require(parser.tokens and parser.active is None, "html_text requires recognizable HTML markup with closed script/style blocks")
+    bindings = [(m[0], bisect_left(parser.positions, m.start())) for m in MACROS.finditer(rendered)]
+    return fences, parser.tokens, bindings
+
+
+def protect_code(before, after, location="field", edit_mode="prose"):
+    if edit_mode == "html_text":
+        p.require(isinstance(before, str) and isinstance(after, str), location + ": html_text requires a string field")
+        try:
+            same = html_signature(before) == html_signature(after)
+        except ValueError as exc:
+            raise ValueError(location + ": " + str(exc)) from exc
+        p.require(same, location + ": html_text may change text nodes only; preserve tags, attributes, scripts, styles, macros and fence structure. Use a separately scoped engineering edit for renderer logic.")
+        return
     old = before if isinstance(before, str) else "\n".join(before)
     new = after if isinstance(after, str) else "\n".join(after)
     p.require(Counter(m[0] for m in CODE.finditer(old)) == Counter(m[0] for m in CODE.finditer(new)),
-              "Preserve fenced code, scripts and styles; use a separate scoped engineering edit")
+              location + ': fenced code/script/style is protected. For HTML text nodes use edit_mode: "html_text" and preserve markup/code; renderer logic needs a separately scoped engineering edit.')
+    p.require(Counter(m[0] for m in FENCE.finditer(old)) == Counter(m[0] for m in FENCE.finditer(new)),
+              location + ': fenced code is protected; use edit_mode: "html_text" for HTML display text or a separately scoped engineering edit for code.')
+
+
+def layout(doc):
+    kind, root = shape(doc)
+    mirrors = {field: ["/" + field, "/data/" + field] for field in sorted(FIELDS)
+               if root and field in doc and field in doc["data"]}
+    openings = {}
+    if kind == "card":
+        for prefix, data in [("", doc), *([("/data", doc["data"])] if root else [])]:
+            for field in ("first_mes", *sorted(GREETINGS)):
+                value = data.get(field)
+                if isinstance(value, str): openings[prefix + "/" + field] = value
+                elif isinstance(value, list):
+                    openings.update({prefix + "/" + field + "/" + str(i): v for i, v in enumerate(value) if isinstance(v, str)})
+    renderers = {}
+    if kind == "card":
+        for prefix, data in [("", doc), *([("/data", doc["data"])] if root else [])]:
+            scripts = data.get("extensions", {}).get("regex_scripts", []) if isinstance(data.get("extensions", {}), dict) else []
+            if isinstance(scripts, list):
+                for i, row in enumerate(scripts):
+                    if isinstance(row, dict) and isinstance(row.get("replaceString"), str):
+                        renderers[prefix + "/extensions/regex_scripts/" + str(i) + "/replaceString"] = row["replaceString"]
+    groups = []
+    for value in dict.fromkeys(openings.values()):
+        matching = [path for path, text in renderers.items() if text == value]
+        if matching:
+            groups.append([path for path, text in openings.items() if text == value] + matching)
+    return {"mirrors": mirrors,
+            "divergent_mirrors": [field for field in mirrors if p.canonical(doc[field]) != p.canonical(doc["data"][field])],
+            "renderer_copies": groups}
+
+
+def coordinated_edits(docs, result, touched):
+    def changed(key, path):
+        return any(k == key and (q == path or q.startswith(path + "/") or path.startswith(q + "/")) for k, q in touched)
+    for key, doc in docs.items():
+        info = layout(doc)
+        for field, paths in info["mirrors"].items():
+            if not any(changed(key, path) for path in paths): continue
+            for path in paths:
+                p.require(changed(key, path), key + ": Update the existing top-level/data mirror explicitly: " + path)
+            p.require(p.canonical(result[key][field]) == p.canonical(result[key]["data"][field]),
+                      key + ": Mirrored output values differ: " + " and ".join(paths))
+        for paths in info["renderer_copies"]:
+            if not any(changed(key, path) for path in paths): continue
+            for path in paths:
+                p.require(changed(key, path), key + ": Update the existing renderer copy explicitly using html_text: " + path)
+            values = [get(result[key], pointer(path)) for path in paths]
+            p.require(all(value == values[0] for value in values), key + ": Opening/renderer copies differ: " + ", ".join(paths))
 
 
 def open_project(input_path, project, limit=LIMIT, profile_path=None):
@@ -179,7 +316,7 @@ def open_project(input_path, project, limit=LIMIT, profile_path=None):
             plan.update(cast=[], targets=[], policy_review=p.profiles.review_template(stage / "preferences.json"))
         p.write_new(stage / "edit-plan.json", plan)
         os.rename(stage, project)
-    return {"project": str(project), "format": fmt, "documents": {k: {"kind": shape(d)[0], "data_pointer": shape(d)[1]} for k, d in docs.items()},
+    return {"project": str(project), "format": fmt, "documents": {k: {"kind": shape(d)[0], "data_pointer": shape(d)[1], **layout(d)} for k, d in docs.items()},
             "next": "Read documents.json; agent prepares exact before/after prose edits in edit-plan.json"}
 
 
@@ -220,16 +357,21 @@ def apply(project, plan_path, output):
     result, touched = copy.deepcopy(docs), set()
     for change in changes:
         key, path = change["document"], change["path"]; parts = pointer(path)
+        mode = change.get("edit_mode", "prose")
+        p.require(mode in ("prose", "html_text"), "Unsupported edit_mode at " + path)
         p.require(key in docs and (key, path) not in touched and change.get("reason", "").strip(), "Unique document/path and reason required")
         p.require(not any(k == key and (path.startswith(q + "/") or q.startswith(path + "/")) for k, q in touched), "Overlapping edits")
         before = get(docs[key], parts); after = change["after"]
         p.require(p.canonical(before) == p.canonical(change["before"]), "Stale before value: " + path)
-        p.require(editable(docs[key], parts), "Protected field: " + path)
+        renderer_paths = {q for group in layout(docs[key])["renderer_copies"] for q in group if "/extensions/regex_scripts/" in q}
+        p.require(editable(docs[key], parts) or (mode == "html_text" and path in renderer_paths),
+                  "Protected field: " + key + ":" + path + "; only inspected exact opening/regex display copies support html_text; renderer logic needs a separately scoped engineering edit")
         p.require((isinstance(before, str) and isinstance(after, str)) or
                   (isinstance(before, list) and isinstance(after, list) and all(isinstance(s, str) for s in before + after)), "Only prose or string-list replacements are allowed")
-        protect_code(before, after)
+        protect_code(before, after, key + ":" + path, mode)
         parent = get(result[key], parts[:-1]); parent[int(parts[-1]) if isinstance(parent, list) else parts[-1]] = after
         touched.add((key, path))
+    coordinated_edits(docs, result, touched)
     # Do not leave another existing PNG payload (or a legacy mirror) with stale
     # prose. Every affected counterpart needs its own explicit before/after edit.
     for key, path in touched:
@@ -247,10 +389,6 @@ def apply(project, plan_path, output):
                     continue  # v3-only prose has no v2 counterpart to synchronize.
                 p.require(False, "PNG counterparts have different structures; resolve them in a separately scoped edit")
             p.require(p.canonical(new) == p.canonical(get(result[key], parts)), "Edit the affected field in every PNG payload explicitly")
-        if root and len(relative) == 1 and relative[0] in docs[key] and relative[0] in docs[key]["data"]:
-            field = relative[0]
-            if p.canonical(docs[key][field]) == p.canonical(docs[key]["data"][field]):
-                p.require(p.canonical(result[key][field]) == p.canonical(result[key]["data"][field]), "Update the existing top-level/data mirror explicitly: " + field)
     packed = raw
     if changes and fmt == "png":
         _, _, creator = p.dependencies(); writer = creator.serializer()

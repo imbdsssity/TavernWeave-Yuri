@@ -1,4 +1,4 @@
-# Yuri Card Workbench 1.2.0
+# Yuri Card Workbench 1.2.1
 
 Create yuri roleplay cards through conversation, adapt an existing card, or turn a post or novel excerpt into a new story. Your agent handles the files; you review and revise in the conversation.
 
@@ -13,11 +13,16 @@ Use the distribution for your host:
 | Host | Distribution | Installation |
 | --- | --- | --- |
 | Codex / ChatGPT Work | `yuri-plugin` | Import and enable `tavernweave-yuri` as a plugin |
+| Claude Code | `yuri-plugin` / release portable `.zip` | Add the plugin marketplace and install `tavernweave-yuri` |
+| ZCode | Release portable `.zip` | Extract the complete bundle and add its local marketplace in Settings → Plugins |
+| Cursor | Release portable `.zip` | Place the complete plugin in `~/.cursor/plugins/local/`, then reload Cursor |
 | DeepSeek Harness | `DSH-plugin` / release `.tgz` | Install the DSH bundle, then select its Yuri Workbench preset |
 | Gemini CLI | `main` or `Gemini-plugin` | Install the complete extension; bundled skills are discovered automatically |
 | Gemini Task mode | `Gemini-plugin` | Import the four skills individually and retain the complete shared folder |
 
 See [installation and host limits](docs/NATIVE_HOSTS.md) for the Gemini CLI extension command and Task mode fallback. Gemini CLI extension import and skill discovery passed the user's test. The agent loads canonical workflows and dependencies as needed. File tools, Python and Node must be available for export.
+
+The Claude Code adaptation draws on upstream [TavernWeave](https://github.com/LiarMTTT/TavernWeave)'s plugin structure and skill discovery. The portable distribution provides skills-only compatibility for Claude Code and ZCode, and uses the Agent Plugins standard supported by Cursor. Installation instructions were checked against official documentation; new runtime acceptance for these three hosts remains unverified.
 
 ## Choose your starting point
 

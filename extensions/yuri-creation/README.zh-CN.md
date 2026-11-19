@@ -1,4 +1,4 @@
-# Yuri Card Workbench 1.2.0（百合制卡扩展）
+# Yuri Card Workbench 1.2.1（百合制卡扩展）
 
 这是基于 TavernWeave 的百合专用产品分发层：保留通用技能生态，加入领域工作流、执行约定与原生宿主整合，重点服务不同来源材料的百合改编。
 
@@ -11,11 +11,16 @@
 | 宿主 | 分发分支 | 安装方式 |
 | --- | --- | --- |
 | Codex / ChatGPT Work | `yuri-plugin` | 导入并启用 `tavernweave-yuri` 插件 |
+| Claude Code | `yuri-plugin` 或正式版 portable `.zip` | 添加插件市场并安装 `tavernweave-yuri` |
+| ZCode | 正式版 portable `.zip` | 解压完整包，在设置 → 插件中添加本地市场并安装 |
+| Cursor | 正式版 portable `.zip` | 将完整插件放入 `~/.cursor/plugins/local/`，重新加载窗口 |
 | DeepSeek Harness | `DSH-plugin` 或正式版 `.tgz` | 安装 DSH 包，选择 Yuri Workbench 预设 |
 | Gemini CLI | `main` 或 `Gemini-plugin` | 安装完整扩展，自动发现技能 |
 | Gemini Task 模式 | `Gemini-plugin` | 分别导入四个技能，保留完整共享目录 |
 
 Gemini CLI 已通过扩展导入及技能识别测试，无须逐项导入；Task 模式仍采用单独导入方式。Agent 按任务加载对应工作流和依赖。安装命令及更新方法见[安装说明](docs/NATIVE_HOSTS.md)。
+
+Claude Code 适配借鉴并复用上游 [TavernWeave](https://github.com/LiarMTTT/TavernWeave) 的插件结构与技能发现方式。portable 包通过 Claude 兼容清单支持 ZCode，通过 Agent Plugins 标准支持 Cursor；这三种宿主的安装说明已按官方文档核对，实机安装和工作流验收仍待验证。
 
 
 ## 从哪里开始
