@@ -1,10 +1,10 @@
 {
   "schema": "yuri/native-plugin/v1",
   "name": "tavernweave-yuri",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "product_kind": "specialized_yuri_distribution_on_tavernweave",
-  "source_commit": "503f2eb5ee252f29140969a9605d67b81983e01a",
-  "source_files": 633,
+  "source_commit": "ee8eedc1104deb001160615f14950fb805684484",
+  "source_files": 635,
   "upstream_skills": [
     "activate-tavernweave-soul",
     "build-work-library",
