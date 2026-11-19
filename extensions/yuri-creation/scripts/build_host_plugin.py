@@ -85,6 +85,10 @@ def native_files(config, version, source_commit, base_names, source_count, licen
         "A specialized Yuri product distribution built on the TavernWeave ecosystem, with its own workflows and execution contracts. "
         "Native skills-only plugin: original conversation, inherited JSON/PNG, supplied posts and novel TXT/EPUB excerpts. "
         "The four yuri entries share the packaged TavernWeave dependencies.\n\n"
+        "Supports Codex/ChatGPT Work, Claude Code, ZCode and Cursor through this complete portable bundle. "
+        "The Claude Code adaptation draws on upstream TavernWeave's plugin structure and skill discovery; "
+        "ZCode uses the Claude-compatible manifest and Cursor uses the root Agent Plugins manifest. "
+        "See the installation guide for commands and host-specific acceptance limits.\n\n"
         "Counting: 4 canonical Yuri workflows, exposed through 4 discovery wrappers, plus 23 upstream dependency entries = 27 discoverable entries. The wrappers bind those workflows; they are not four additional workflows. Internal modules are not discovery entries.\n\n"
         f"[English guide]({EXT}/README.md) · [中文说明]({EXT}/README.zh-CN.md) · "
         f"[Install / 安装]({EXT}/docs/NATIVE_HOSTS.md)\n\n"
@@ -113,7 +117,8 @@ def native_files(config, version, source_commit, base_names, source_count, licen
                    "upstream_dependency_entries": len(base_names), "packaged_discoverable_entries": len(base_names) + len(names)},
         "counting_note": "Wrappers expose canonical workflows; implementation modules and canonical resources are not additional discoverable entries",
         "components": config["components"], "host_loading": "not_observed", "account_installation": "not_performed",
-        "host_scope": ["portable ChatGPT/Codex plugin layout", "Claude skills-only compatibility layout"],
+        "host_scope": ["portable ChatGPT/Codex plugin layout", "Claude Code skills-only compatibility layout",
+                       "ZCode Claude-compatible skills-only layout", "Cursor Agent Plugins skills-only layout"],
         "not_claimed": ["DSH/Antigravity native registration", "public-directory publication", "live host import or roleplay"]})
     return files
 

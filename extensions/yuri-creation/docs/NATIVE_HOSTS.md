@@ -41,15 +41,37 @@ Official references: [GitHub workspace import](https://learn.chatgpt.com/docs/en
 | Host | Distribution | Acceptance |
 | --- | --- | --- |
 | Codex / ChatGPT Work | `yuri-plugin` | User-reported 0.5.0 import and four-skill discovery passed |
+| Claude Code | `yuri-plugin` / portable ZIP | Skills-only package compatibility; new host runtime acceptance pending |
+| ZCode | Portable ZIP, Claude-compatible marketplace | Package compatibility; host installation/discovery pending |
+| Cursor | Portable ZIP, root Agent Plugins manifest | Package compatibility; host installation/discovery pending |
 | DeepSeek Harness | `DSH-plugin`, or official release DSH `.tgz` | User-reported 0.5.0 import/discovery passed; contract scopes DSH 0.2.2-rc.1 |
 | Gemini CLI | `main` or `Gemini-plugin` | User-reported extension installation and bundled skill discovery passed |
 | Gemini Task mode | `Gemini-plugin` | User-reported individual skill imports and discovery passed |
 
-Codex uses the complete plugin folder and its native marketplace/manifest. The four wrappers and 23 base skills share packaged resources. Python is required for file export and Node for the upstream authoring router. Search/images use whatever host tools are actually available. Optional Claude compatibility metadata is retained but no new Claude runtime acceptance is claimed.
+Codex uses the complete plugin folder and its native marketplace/manifest. The four wrappers and 23 base skills share packaged resources. Python is required for file export and Node for the upstream authoring router. Search/images use whatever host tools are actually available.
+
+### Claude Code, ZCode and Cursor
+
+The Claude Code adaptation draws on upstream [TavernWeave](https://github.com/LiarMTTT/TavernWeave)'s plugin structure and skill discovery. Use the complete Yuri **portable** distribution for all three hosts. It contains four Yuri workflows, 23 dependency skills and their shared resources. The source root's upstream `.claude-plugin` catalog belongs to the retained TavernWeave base; select `yuri-plugin` or the extracted portable ZIP to install the Yuri product.
+
+**Claude Code:** in a Claude Code session, run:
+
+```text
+/plugin marketplace add imbdsssity/TavernWeave-Yuri#yuri-plugin
+/plugin install tavernweave-yuri@tavernweave-yuri-native
+```
+
+Alternatively, extract `TavernWeave-Yuri-portable-v1.2.1.zip` and add its `tavernweave-yuri/` folder with `/plugin marketplace add ./path/to/tavernweave-yuri`, then use the same install command. Start a fresh session and check the four Yuri workflows. This distribution is skills-only; upstream's Claude-specific Front Door hook, `tavernweave` agent and Soul switch are separate upstream components and are not included in the portable Yuri package.
+
+**ZCode:** extract the same portable ZIP. Open a workspace, then Settings → Plugins → Create → Add marketplace and choose the extracted `tavernweave-yuri/` directory or its `.claude-plugin/marketplace.json`. Install and enable `tavernweave-yuri` from that marketplace. ZCode supports the packaged `.claude-plugin/plugin.json` compatibility manifest. Keep the entire bundle together.
+
+**Cursor:** extract the same portable ZIP and place its complete `tavernweave-yuri/` folder at `~/.cursor/plugins/local/tavernweave-yuri/` (on Windows, under your user profile's `.cursor/plugins/local/`). The folder must contain `plugin.json`, `skills/` and `extensions/` directly, with no extra nesting. Restart Cursor or run **Developer: Reload Window**, then inspect **Customize** for the plugin and its skills. This uses Cursor's supported Agent Plugins format. Local plugin imports must be allowed by your account or organization. Invoke a Yuri workflow from Agent chat's `/` menu and confirm its canonical resources are available.
+
+Official references (checked 2026-11-19): [Claude Code plugin installation](https://code.claude.com/docs/en/discover-plugins), [ZCode plugins and Claude compatibility](https://zcode.z.ai/en/docs/plugin), [Cursor plugin formats and local loading](https://cursor.com/docs/plugins), [Cursor manifest reference](https://cursor.com/docs/reference/plugins). These establish the supported package formats and installation routes. Claude Code, ZCode and Cursor have not undergone a new live installation, discovery or conversion test for this release; the maintainer's positive 1.2.1-dev.1 conversion results are separate evidence.
 
 ### DeepSeek Harness
 
-Download `TavernWeave-Yuri-DSH-v1.2.0.tgz` from the [official GitHub release](https://github.com/imbdsssity/TavernWeave-Yuri/releases/tag/yuri-v1.2.0). In DSH Desktop, open Plugins → Add plugin → Install third-party plugin, select the tarball, enable the bundle, then choose **TavernWeave Yuri Workbench** in a new session. The complete tarball contains four Yuri workflows and 23 dependency skills; the small source integration folder alone does not contain these resources.
+Download `TavernWeave-Yuri-DSH-v1.2.1.tgz` from the [official GitHub release](https://github.com/imbdsssity/TavernWeave-Yuri/releases/tag/yuri-v1.2.1). In DSH Desktop, open Plugins → Add plugin → Install third-party plugin, select the tarball, enable the bundle, then choose **TavernWeave Yuri Workbench** in a new session. The complete tarball contains four Yuri workflows and 23 dependency skills; the small source integration folder alone does not contain these resources.
 
 For CLI/Web profiles use `dsh plugin --profile <profile> add <tarball>`. See the [adapter guide](../../../host-adapters/dsh/plugin-yuri/README.md) and version-specific [acceptance contract](../../../host-adapters/dsh/yuri-plugin-contract.json). Built-in DSH search/sub-agent tools are not mounted by default. Other runtime versions need their own compatibility evidence.
 
@@ -99,12 +121,12 @@ The builder reuses pinned upstream package helpers, exports committed blobs only
 
 From any working directory, the packaged `extensions/yuri-creation/scripts/host_probe.py` checks entry/resource presence, runtime availability and source/authoring pins. It reports host discovery as unobserved; an agent cannot prove account installation by finding files. A fresh task selecting the native entry is the final host-discovery check.
 
-Portable and Gemini outputs are separate generated trees. Gemini templates are maintained in `hosts/gemini/`, and its plan targets `Gemini-plugin`. The DSH adapter is source-compatible; preserve its history while merging source updates normally. Before publishing, use a clean committed checkout, verify the extension manifest, and publish exactly the checked source/artifacts. Release tag `yuri-v1.2.0` identifies the official product source; package receipts record that immutable source commit.
+Portable and Gemini outputs are separate generated trees. Gemini templates are maintained in `hosts/gemini/`, and its plan targets `Gemini-plugin`. The DSH adapter is source-compatible; preserve its history while merging source updates normally. Before publishing, use a clean committed checkout, verify the extension manifest, and publish exactly the checked source/artifacts. Release tag `yuri-v1.2.1` identifies the official product source; package receipts record that immutable source commit.
 
 ## Version 1.0.0
 
 The official 1.0.0 distributions include supported custom profiles and reference-led image adaptation. Historical host import/discovery acceptance above remains 0.5.0 evidence; no new host test was requested. Check NATIVE_PLUGIN.json.source_commit and host_probe.py package_source_commit to identify the installed generated source separately from pinned dependency versions. SOURCE.json in the release records source and generated package trees. Existing installations following a distribution branch receive its new package when updated through the host.
 
-## Version 1.2.0
+## Version 1.2.1
 
 The product is a specialized TavernWeave distribution. See ARCHITECTURE.md for canonical/workflow/wrapper/module counts and UPSTREAM_SYNC.md for reviewed upstream adoption. Portable/Gemini receipts expose 4 canonical workflows, 4 discovery wrappers, 23 dependencies and 27 discoverable entries; DSH directly registers 4 canonical workflows plus 23 dependencies with no wrappers. SOURCE.json records the product source, upstream version/commit and review decision. This metadata is not a new native-host acceptance claim.
