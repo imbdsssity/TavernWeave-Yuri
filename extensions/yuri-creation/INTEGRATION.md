@@ -2,7 +2,7 @@ TavernWeave-Yuri is a specialized product distribution built on the retained Tav
 
 # Product integration and reuse map
 
-| Responsibility | Choice in 1.2.0 |
+| Responsibility | Choice in 1.2.1 |
 | --- | --- |
 | Original yuri policy, delegated choices, localized entry | New small MIT extension |
 | General character/worldbook/opening methods | Pinned external TavernWeave authoring documents; optional file-verified bridge |
@@ -22,11 +22,11 @@ Minimum end-to-end path: `init` â†’ agent writes `card.md` and `creation.json` â
 
 The first release uses a text-first adult main cast. Large systems, a mandatory design interview and graphics are unnecessary for this delegated first draft. Upstream does not automatically confer tested compatibility across hosts. Keep the verified v1.2.0 archive frozen.
 
-`capabilities` reports supported package commands separately from unprobed host tools. `pack-image --card PATH --avatar PATH --output NEW.png` remains the original avatar packager. The separate card_file.py adapter handles inherited containers; do not send inherited cards through Markdown conversion. Package version is 1.2.0; the compatible original creation-record contract remains 0.1.0. Custom profile enforcement is implemented in shared/profiles.py; see references/custom-profiles.md. Legacy-file licensing remains deferred.
+`capabilities` reports supported package commands separately from unprobed host tools. `pack-image --card PATH --avatar PATH --output NEW.png` remains the original avatar packager. The separate card_file.py adapter handles inherited containers; do not send inherited cards through Markdown conversion. Package version is 1.2.1; the compatible original creation-record contract remains 0.1.0. Custom profile enforcement is implemented in shared/profiles.py; see references/custom-profiles.md. Legacy-file licensing remains deferred.
 
 ## Reviewed upstream integration
 
-Repository: https://github.com/imbdsssity/TavernWeave-Yuri. The co-located upstream base remains pinned at f9863d2b05305457fe9ed8b0c5688d52aca400a5; this native feature starts from yuri-dev at 3ebc2a536dabb37328d8cc9ad05b5ad6182d8e8b. The extension lives under extensions/yuri-creation/. Main carries the official 1.2.0 release. Pass the repository/plugin root as --tavern-root when using co-located authoring files. Source root inventories and all 23 upstream skills remain unchanged; the separate native export adds four discovery wrappers.
+Repository: https://github.com/imbdsssity/TavernWeave-Yuri. The co-located upstream base remains pinned at f9863d2b05305457fe9ed8b0c5688d52aca400a5; this native feature starts from yuri-dev at 3ebc2a536dabb37328d8cc9ad05b5ad6182d8e8b. The extension lives under extensions/yuri-creation/. Main carries the official 1.2.1 release. Pass the repository/plugin root as --tavern-root when using co-located authoring files. Source root inventories and all 23 upstream skills remain unchanged; the separate native export adds four discovery wrappers.
 
 The automated suite remains available with a historical 40-check baseline at 0.3.1. The 0.4.0 checks used one PNG and one EPUB excerpt; see docs/FILE_SUPPORT_REVIEW_2026-11-12.md. Native packaging checks are separately recorded in docs/NATIVE_HOST_REVIEW_2026-11-12.md and run by GPT-6 Luna. No earlier material trials or suites are repeated. Custom-policy checks use the focused development test in tests/test_profiles.py; legacy-license work remains deferred.
 

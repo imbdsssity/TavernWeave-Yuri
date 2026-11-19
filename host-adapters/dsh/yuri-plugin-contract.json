@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "adapterVersion": "1.2.0",
+  "adapterVersion": "1.2.1",
   "status": "plugin-bundle",
   "supportLevel": "plugin-bundle",
   "runtimeAccepted": false,
   "modelQualityClaim": "not-evaluated",
   "package": {
     "name": "tavernweave-yuri-dsh",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "presetId": "tavernweave-yuri",
     "presetName": "TavernWeave Yuri Workbench",
     "pluginRowId": "tavernweave-yuri-dsh",
@@ -131,7 +131,7 @@
         "notYetVerified": []
       }
     ],
-    "currentReleaseNote": "The 1.2.0 package retains the historically accepted adapter; host acceptance below remains scoped to its actual version. No fresh host installation is claimed."
+    "currentReleaseNote": "Official 1.2.1 promotes tested checkpoint e8b00854654f504938e28da98340419cbd83d07e. The maintainer reports multiple independent conversion trials with positive results. Release preparation preserves the conversion implementation; existing host installation and roleplay evidence remains version-bound."
   },
   "knownEnvironmentIssues": []
 }

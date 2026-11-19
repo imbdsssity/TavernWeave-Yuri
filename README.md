@@ -1,21 +1,26 @@
-# Yuri Card Workbench 1.2.0
+# Yuri Card Workbench 1.2.1
 
 这是基于 TavernWeave 的百合专用产品分发层：保留通用技能生态，加入领域工作流、执行约定与原生宿主整合，重点服务不同来源材料的百合改编。
 
 通过对话创作百合角色卡，或将已有角色卡、帖子、小说片段改编为适合 SillyTavern 使用的故事。Agent 处理文件，你在对话中审阅和修改。
 
-[中文使用说明](extensions/yuri-creation/README.zh-CN.md) · [English guide](extensions/yuri-creation/README.md) · [正式版本](https://github.com/imbdsssity/TavernWeave-Yuri/releases/tag/yuri-v1.2.0)
+[中文使用说明](extensions/yuri-creation/README.zh-CN.md) · [English guide](extensions/yuri-creation/README.md) · [正式版本](https://github.com/imbdsssity/TavernWeave-Yuri/releases/tag/yuri-v1.2.1)
 
 ## 安装
 
 | 使用环境 | 分发分支／文件 | 方式 |
 | --- | --- | --- |
 | Codex、ChatGPT Work | [yuri-plugin](https://github.com/imbdsssity/TavernWeave-Yuri/tree/yuri-plugin) | 导入并启用 `tavernweave-yuri` 插件 |
+| Claude Code | `yuri-plugin` 或正式版 portable `.zip` | 添加插件市场，安装 `tavernweave-yuri` |
+| ZCode | 正式版 portable `.zip` | 解压完整包，在插件页添加本地市场后安装 |
+| Cursor | 正式版 portable `.zip` | 将完整插件目录放入 `~/.cursor/plugins/local/`，重新加载窗口 |
 | DeepSeek Harness | [DSH-plugin](https://github.com/imbdsssity/TavernWeave-Yuri/tree/DSH-plugin) 或正式版 DSH `.tgz` | 安装插件包，选择 Yuri Workbench 预设 |
 | Gemini CLI | `main` 或 [Gemini-plugin](https://github.com/imbdsssity/TavernWeave-Yuri/tree/Gemini-plugin) | 一次安装完整扩展，自动发现四个百合技能及依赖 |
 | Gemini Task 模式 | `Gemini-plugin` | 分别导入四个技能，保留完整共享目录 |
 
 具体步骤见[安装说明](extensions/yuri-creation/docs/NATIVE_HOSTS.md)。Gemini CLI 已通过扩展导入及技能识别测试；Task 模式保留逐项导入方式。各宿主的文件权限、Python、Node 和搜索能力取决于实际环境。
+
+**Claude Code 适配借鉴并复用上游 [TavernWeave](https://github.com/LiarMTTT/TavernWeave) 的插件结构与技能发现方式。** 本项目的 portable 包提供四个百合工作流及 23 个依赖技能，并通过 Claude 兼容清单支持 ZCode、通过 Agent Plugins 标准支持 Cursor。Claude Code、ZCode 与 Cursor 的安装方式已按官方文档核对，实机安装与工作流验收仍待各宿主验证。
 
 ### Gemini CLI 扩展
 

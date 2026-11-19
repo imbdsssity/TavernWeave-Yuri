@@ -75,6 +75,8 @@ jobs:
         run: |
           python -B extensions/yuri-creation/scripts/upstream_sync.py verify --repo .
           python -B -m unittest discover -s extensions/yuri-creation/tests -p 'test_upstream_sync.py' -v
+      - name: Check inherited card mirrors and HTML display edits
+        run: python -B -m unittest discover -s extensions/yuri-creation/tests -p 'test_card_layout.py' -v
       - name: Check Codex skills-only installation
         env:
           PYTHONUTF8: '1'
