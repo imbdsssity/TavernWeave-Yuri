@@ -1,3 +1,16 @@
+# Yuri Card Workbench 1.2.1
+
+Official release authorized on 2026-11-19. Promotes the accepted 1.2.1-dev.1 checkpoint at `e8b00854654f504938e28da98340419cbd83d07e`. The maintainer reports multiple rounds of independent character-card conversion tests with positive results. The tested conversion implementation is retained; release preparation updates documentation, version identifiers and package compatibility descriptions.
+
+- Fixes coordinated V2/V3 top-level and data mirrors, including initially divergent values, missing counterparts, tags and nested greetings. Refuses inconsistent output rather than silently normalizing the source.
+- Supports authorized HTML display-text edits in fenced HTML/HTM openings while preserving markup, attributes, scripts, styles, macros and fence delimiters. Exact opening copies in known regex replacement templates are coordinated within the same edit transaction.
+- Credits the upstream TavernWeave basis of the Claude Code adaptation. Documents Claude Code and ZCode installation through the portable bundle's Claude-compatible manifests, and Cursor installation through its existing root Agent Plugins manifest. All four canonical workflows and 23 dependencies remain together.
+- Aligns product, Gemini and DSH versions at 1.2.1 and refreshes release links and the extension inventory. Upstream TavernWeave remains pinned at 2.4.0 with its notices and license boundaries intact.
+
+Claude Code, ZCode and Cursor installation routes were checked against official documentation; live installation and workflow acceptance for these hosts remain unverified. The maintainer's conversion results do not imply a new cross-host acceptance pass. No new model/card/image trials are repeated during this release preparation. The portable ZIP, Gemini ZIP and DSH TGZ are built from the exact release source, with SOURCE.json and SHA256SUMS.txt recording provenance and checksums.
+
+<!-- historical-release-notes -->
+
 # Unreleased test checkpoint — 1.2.1-dev.1
 
 Adds explicit V2/V3 top-level/data mirror discovery and coordinated edits regardless of whether source values already agree; missing counterparts are named and mismatched outputs are refused. Adds opt-in html_text changes for HTML text nodes, including fenced htm/html menus, while preserving markup, attributes, script/style bodies, macro structure and fence delimiters. Exact opening copies in known regex replacement templates are disclosed and must be coordinated in the same transaction; arbitrary regex logic/configuration remains protected. Tags and nested greeting mirrors are covered. No after-export patching or automatic source normalization is used.
@@ -17,7 +30,6 @@ The two changes are bounded maintenance/product-architecture work. Only targeted
 
 Upstream notices and license boundaries are retained. Existing v1.0.0 and earlier releases remain available. Yuri product version 1.2.0 is separate from upstream TavernWeave 2.4.0 and from the frozen earlier Workbench repository.
 
-<!-- historical-release-notes -->
 
 # Yuri Card Workbench 1.0.0
 

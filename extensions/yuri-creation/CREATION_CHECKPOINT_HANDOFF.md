@@ -1,4 +1,6 @@
-# Development handoff — 1.2.0
+# Development handoff — 1.2.1
+
+Current release authorization (2026-11-19): promote the accepted `e8b0085` checkpoint as 1.2.1, credit the upstream Claude Code adaptation, and document portable support for ZCode and Cursor. See PROJECT_STATE.md and RELEASE_NOTES.md for current scope. The historical notes below remain version-bound.
 
 Maintain four canonical entries in extensions/yuri-creation/skills. build_host_plugin.py generates a complete tavernweave-yuri plugin folder containing 23 unchanged upstream dependencies plus four native wrappers. Do not duplicate canonical skill policies or change the root upstream inventory to install them. The generated yuri-plugin channel contains the actual native layout; yuri-dev remains source.
 
