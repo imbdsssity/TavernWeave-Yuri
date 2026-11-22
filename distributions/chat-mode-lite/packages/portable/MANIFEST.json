@@ -1,7 +1,7 @@
 {
   "schema": "lite-package-inventory/1",
   "versions": {
-    "package": "lite-packages/C.1",
+    "package": "lite-packages/C.2",
     "core": "lite-core/A1.1",
     "integration": "lite-pre-c/1",
     "policy": "yuri-policy/1.0",
@@ -13,8 +13,8 @@
   "host": "portable",
   "state": "unreleased-preparation",
   "active_entry": "START_HERE.md",
-  "instruction_characters": 7895,
-  "instruction_utf8_bytes": 7897,
+  "instruction_characters": 7889,
+  "instruction_utf8_bytes": 7891,
   "local_instruction_design_budget": 7900,
   "official_instruction_limit_verified": false,
   "reference_upload_files": [
@@ -159,8 +159,8 @@
     "Full runtime"
   ],
   "gates": {
-    "T1": "unperformed; output undecided",
-    "T2": "unperformed",
+    "T1": "bounded trial; output undecided",
+    "T2": "bounded trial; not accepted",
     "T3": "unperformed; account eligibility unverified",
     "SillyTavern_import": "unperformed",
     "human_roleplay": "unperformed"
@@ -176,16 +176,16 @@
       "sha256": "306f6b88b74ebee4afb142f77ce3164ee585cb18f49dc1637da44eb3384dfa42"
     },
     "REFERENCE_PACK.md": {
-      "bytes": 121145,
-      "sha256": "bf873f0b0383ccc1fe5ae091ddbfd3b631dcb3eeabcd659c88b7855b7582e977"
+      "bytes": 121184,
+      "sha256": "b575b3944526e7b1e22e8a8cc6be6473789f9037f449c40057114c88fe54a4ca"
     },
     "SOURCE_MAP.md": {
       "bytes": 2191,
-      "sha256": "8a2135f0bfa5f8dc36c179c5c544c94c0ea11547b564cc1233de228b627a98b4"
+      "sha256": "a449ae35e6adb88e7db99a3b39a6d13496ab98b33fae6204acaad1b640da9c1e"
     },
     "START_HERE.md": {
-      "bytes": 7897,
-      "sha256": "007ec897f14a616f452d5de073ac898de2fc490dc979874054777a9cee2b2c46"
+      "bytes": 7891,
+      "sha256": "918ee4da43fb14a2becca078cf5aa4c127ceaf0ad9f486eb02623dfb6a4269cd"
     },
     "THIRD_PARTY_NOTICES.md": {
       "bytes": 4255,
@@ -196,8 +196,8 @@
       "sha256": "76512159ac2eb7f442ac4a9e63af046e1996ebe60790569b7fd8695f1bab464b"
     },
     "USAGE.md": {
-      "bytes": 2995,
-      "sha256": "013d9a5bf669fb8d0d9a3563feacd8aec237322c5726a91dc8aff1bcad91772a"
+      "bytes": 3131,
+      "sha256": "23cf37a4058233dec3d80a024d156f90cc202813faac88796f3194bf4f5b0fe3"
     },
     "licenses/YURI-MIT.txt": {
       "bytes": 1089,

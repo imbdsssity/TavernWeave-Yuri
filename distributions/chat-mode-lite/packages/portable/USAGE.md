@@ -7,7 +7,7 @@
 3. Give your request and source text. No attachment, filesystem access, GitHub fetch, interpreter or installation is required. If attachments are available, you may attach the reference pack instead, then confirm the assistant can actually access the needed sections. If not, paste them.
 4. On pause, retain the completed checkpoint and current draft. To continue in a fresh conversation, repeat steps 1–2, paste the resume prompt section, your designated checkpoint, necessary current draft/source, next batch and changed instructions. Reusing an old checkpoint must not be described as access to an unavailable newer successor.
 
-Only this directory is needed: local source map, references, host notes, manifest and notices accompany it. Keep private source/draft/checkpoint text in the task conversation, outside the reusable package. See HOST_REQUIREMENTS.md for dated host uncertainty. T1/T2/T3 remain unperformed; a setup acknowledgment is not acceptance evidence.
+Only this directory is needed: local source map, references, host notes, manifest and notices accompany it. Keep private source/draft/checkpoint text in the task conversation, outside the reusable package. See HOST_REQUIREMENTS.md for dated host uncertainty. T1 selection and T2 recovery acceptance remain open after bounded agent trials; T3 remains unperformed. A setup acknowledgment is not acceptance evidence.
 
 ## 简体中文
 
@@ -16,4 +16,4 @@ Only this directory is needed: local source map, references, host notes, manifes
 3. 提供请求和原文。不需要附件、文件系统、GitHub 抓取、代码或安装。有附件能力时也可上传参考包，但必须确认所需章节实际可访问；否则粘贴正文。
 4. 暂停时保留已填写的检查点和当前草稿。新会话重复前两步，粘贴恢复提示、指定检查点、必要的当前草稿／原文、下一批和新决定。重新使用旧检查点不代表能访问缺失的新版本。
 
-单独保留本目录即可，来源映射、参考、宿主说明、清单和许可均在其中。私人原文、草稿和检查点只放在任务会话，不加入可复用包。HOST_REQUIREMENTS.md 记录带日期的宿主不确定性。T1／T2／T3 均未执行；助手确认收到不等于验收通过。
+单独保留本目录即可，来源映射、参考、宿主说明、清单和许可均在其中。私人原文、草稿和检查点只放在任务会话，不加入可复用包。HOST_REQUIREMENTS.md 记录带日期的宿主不确定性。有限代理测试后 T1 形式选择和 T2 续接验收仍未完成，T3 尚未执行；助手确认收到不等于验收通过。

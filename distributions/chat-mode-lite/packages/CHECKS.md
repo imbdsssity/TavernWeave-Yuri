@@ -1,8 +1,14 @@
 # Phase C checks and remaining evidence
 
-Exact base: `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`; branch `lite-docs`; PR target `lite-phase-0-design`. Package marker `lite-packages/C.1` is an unreleased preparation revision, not a published product version.
+Exact base: `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`; branch `lite-docs`; PR target `lite-phase-0-design`. Package marker `lite-packages/C.2` is an unreleased preparation revision, not a published product version.
 
 The requested pre-Phase-C handoff and all four original design documents were read at the exact base, followed by the sixteen integrated runtime/reference/template files and applicable repository/extension terms. The final integration base's own CI was read directly: [validate run 43869743253](https://github.com/imbdsssity/TavernWeave-Yuri/actions/runs/43869743253), with `repository` and `portable-plugin` completed successfully. That is base evidence, not the Phase C candidate's result.
+
+## Conversation D follow-up — 2026-11-22
+
+The private QA package tested C.1 candidate `45b8fa54db4b2c59b8950e0f135d5787a0ee426a`. Bounded agent trials passed small complete-JSON and field-replacement artifact checks, but found incorrect Unicode in the guarded patch, inconsistent player binding in post/novel drafts, later-event leakage, an unclear original yuri premise and a depth-prompt scope error. The supplied-card result remained partial because protected status content conflicted with the adaptation. T1 has no selected winner; T2 was not accepted. Private inputs and outputs are not part of this repository.
+
+The follow-up strengthens actual-output review in the active instructions without changing the sixteen canonical sources, deciding an output format, or migrating protected status code. These are instruction changes, not proof the model will comply. A real ChatGPT Project test was blocked by a signed-out browser; no setup, probe or prompt was submitted. Real host acceptance, SillyTavern import and play remain unverified. The historical 2026-11-16 observations below describe the pre-QA candidate, not this follow-up.
 
 ## Static preparation checks
 
@@ -21,11 +27,11 @@ No authored case or static check is conversational evidence. Existing repository
 
 | Gate | State and next evidence |
 | --- | --- |
-| T1 existing-card delivery selection | Unperformed. Complete JSON, inspected field replacements and guarded machine-readable patches remain candidates without priority/size threshold. Requires the same bounded synthetic target/change, actual application route and resulting artifact checks. |
-| T2 isolated recovery | Unperformed. Requires the one existing novel fixture and genuinely separate initial/resume conversations; source examples and static record review cannot pass it. |
+| T1 existing-card delivery selection | Open after bounded agent trials. Complete JSON, inspected field replacements and guarded machine-readable patches remain candidates without priority/size threshold. Requires the same bounded synthetic target/change, actual application route and resulting artifact checks. |
+| T2 isolated recovery | Not accepted after a bounded fresh-agent trial. Requires the one existing novel fixture and genuinely separate initial/resume conversations; source examples and static record review cannot pass it. |
 | T3 portable/Projects/GPT | Unperformed. Requires actual active-field acceptance, reference access, tools-disabled task and recovery observations. No account configuration was attempted; account eligibility and numerical limits are unverified. A genuinely unavailable GPT route should then be marked blocked, not passed. |
 | Lite SillyTavern import / human roleplay | Unperformed. JSON appearance, parsing and Full historical tests do not establish either. |
 | Large inputs / new hosts | Unverified; no universal batch size, output threshold or context guarantee. |
 | Publication / migration | Not performed or authorized. No release/tag, account installation, migration, production advancement or PR merge. |
 
-The optional package checker is maintainer tooling, not a Lite runtime dependency. No paid model APIs, material/model conversion trials, fresh Chat Mode recovery trials or repeated Full test campaign were run. Public documentation establishes host guidance; only account observations can establish eligibility, field acceptance or actual deployment behavior.
+The optional package checker is maintainer tooling, not a Lite runtime dependency. In the original Phase C preparation, no paid model APIs, material/model conversion trials, fresh Chat Mode recovery trials or repeated Full test campaign were run. Public documentation establishes host guidance; only account observations can establish eligibility, field acceptance or actual deployment behavior.

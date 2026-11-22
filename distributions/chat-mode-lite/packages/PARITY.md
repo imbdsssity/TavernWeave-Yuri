@@ -1,6 +1,6 @@
 # Maintained behavior and packaging parity
 
-Package `lite-packages/C.1`; exact base `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. Canonical files are read-only inputs for this phase. ACTIVE_INSTRUCTIONS.md is the one maintained condensation; all three active entries are byte-identical generated copies. REFERENCE_PACK.md includes all sixteen complete source bodies, with navigation-only link rewrites. This mapping is a static semantic review aid, not a model/host acceptance result.
+Package `lite-packages/C.2`; exact base `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. Canonical files are read-only inputs for this phase. ACTIVE_INSTRUCTIONS.md is the one maintained condensation; all three active entries are byte-identical generated copies. REFERENCE_PACK.md includes all sixteen complete source bodies, with navigation-only link rewrites. This mapping is a static semantic review aid, not a model/host acceptance result.
 
 | Obligation in active instructions | Canonical authority / complete detail |
 | --- | --- |

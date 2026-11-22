@@ -1,8 +1,8 @@
 # Package source map
 
-Exact base: `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. Package: `lite-packages/C.1` (unreleased).
+Exact base: `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. Package: `lite-packages/C.2` (unreleased).
 
-package: `lite-packages/C.1` / core: `lite-core/A1.1` / integration: `lite-pre-c/1` / policy: `yuri-policy/1.0` / cards: `lite-card-workflows/A2.1` / sources: `lite-source/B2.1` / checkpoint: `yuri-lite/checkpoint/v1`
+package: `lite-packages/C.2` / core: `lite-core/A1.1` / integration: `lite-pre-c/1` / policy: `yuri-policy/1.0` / cards: `lite-card-workflows/A2.1` / sources: `lite-source/B2.1` / checkpoint: `yuri-lite/checkpoint/v1`
 
 All rows are sections in the local reference pack. Original UTF-8 source SHA-256 and Git blobs are in MANIFEST.json. Rendered bodies retain source prose; only relative Markdown links and optional illustration link labels are normalized. No source behavior is edited.
 

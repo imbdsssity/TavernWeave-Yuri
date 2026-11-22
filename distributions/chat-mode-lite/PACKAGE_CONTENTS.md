@@ -1,6 +1,6 @@
 # Package contents / 包清单
 
-Candidate `lite-packages/C.1`, exact base `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. No release or host acceptance is claimed. / 候选准备版本，不代表发布或宿主验收。
+Candidate `lite-packages/C.2`, exact base `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. No release or host acceptance is claimed. / 候选准备版本，不代表发布或宿主验收。
 
 ## Maintained source and generated delivery
 

@@ -4,7 +4,7 @@
 
 Create an original yuri roleplay card, adapt a supplied JSON/text card or worldbook, or turn a supplied post or novel passage into a playable card and worldbook draft through conversation. Novel work can span declared chapter batches with explicit checkpoints.
 
-This is an **unreleased package preparation candidate** (`lite-packages/C.1`), based on `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. The integrated workflows are included; actual output selection, isolated recovery and host acceptance remain untested. It does not inherit Full's binary editing or lossless-preservation guarantees.
+This is an **unreleased package preparation candidate** (`lite-packages/C.2`), based on `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. The integrated workflows are included; bounded agent trials found defects; output selection, recovery acceptance and real-host acceptance remain open. It does not inherit Full's binary editing or lossless-preservation guarantees.
 
 ## Choose a starting path
 
@@ -31,7 +31,7 @@ For PNG cards supply decoded JSON; for EPUB supply extracted text. Lite does not
 
 ## Readiness and terms
 
-See [package inventory](PACKAGE_CONTENTS.md), [current host findings](packages/HOST_REQUIREMENTS.md), [policy mapping](packages/PARITY.md) and [checks/remaining gates](packages/CHECKS.md). T1, T2, T3, Lite SillyTavern import and human roleplay remain unperformed. No output winner, general size limit or host compatibility guarantee is selected.
+See [package inventory](PACKAGE_CONTENTS.md), [current host findings](packages/HOST_REQUIREMENTS.md), [policy mapping](packages/PARITY.md) and [checks/remaining gates](packages/CHECKS.md). T1 selection and T2 recovery acceptance remain open after bounded agent trials; T3, Lite SillyTavern import and human roleplay remain unperformed. No output winner, general size limit or host compatibility guarantee is selected.
 
 Official host guidance was rechecked on 2026-11-16. It describes a Custom GPT transition; the compatibility package remains prepared, with portable/Projects fallback. Account creation/editing rights and numerical limits were not verified in an account. Follow the dated host notes and owning workspace notice before setup; preparation does not deploy or publish anything.
 

@@ -14,7 +14,7 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parents[1]
 BASE = "4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95"
-VERSION = "lite-packages/C.1"
+VERSION = "lite-packages/C.2"
 PREFIX = "distributions/chat-mode-lite/"
 URL = f"https://github.com/imbdsssity/TavernWeave-Yuri/blob/{BASE}/"
 VERSIONS = {
@@ -97,7 +97,7 @@ def make_reference():
 
 Package `{VERSION}`; exact source base `{BASE}`. Supporting knowledge, **not a substitute for active instructions**. Apply the companion host instructions first. All sixteen maintained instruction/reference/template bodies are included below; no filesystem or repository fetch is needed for their content. Use only selected sections/companions for a task; do not assume uploading this pack means it was all read.
 
-Source phase/status statements are historical authoring context, not new test results. Current package state: unreleased preparation; T1 output selection, T2 isolated recovery and T3 host setup remain unperformed. Link normalization changes navigation only: source companions point inside this file, licenses point to local copies, optional excluded illustrations point to the pinned repository. Design links remain optional maintainer traceability. No illustration/fixture/answer key, design record, real source or completed checkpoint body is embedded.
+Source phase/status statements are historical authoring context, not new test results. Current package state: unreleased preparation; T1 output selection, T2 recovery acceptance and T3 host setup remain open; earlier bounded agent trials found defects. Link normalization changes navigation only: source companions point inside this file, licenses point to local copies, optional excluded illustrations point to the pinned repository. Design links remain optional maintainer traceability. No illustration/fixture/answer key, design record, real source or completed checkpoint body is embedded.
 
 For plain copy/paste, locate `Source: <canonical path>` and copy that section through the next Source heading. Templates are blank structures, not observed records. Their Instructions/Source headings are navigation text, not source claims.
 
@@ -167,7 +167,7 @@ def collect():
             "local_instruction_design_budget": 7900, "official_instruction_limit_verified": False,
             "reference_upload_files": ["REFERENCE_PACK.md"], "sources": source_records,
             "excluded_content": ["design", "examples", "qa", "private casework", "real checkpoints", "Full runtime"],
-            "gates": {"T1": "unperformed; output undecided", "T2": "unperformed", "T3": "unperformed; account eligibility unverified", "SillyTavern_import": "unperformed", "human_roleplay": "unperformed"},
+            "gates": {"T1": "bounded trial; output undecided", "T2": "bounded trial; not accepted", "T3": "unperformed; account eligibility unverified", "SillyTavern_import": "unperformed", "human_roleplay": "unperformed"},
             "inventory_note": "Manifest excludes itself to avoid a recursive digest. Hashes are maintainer-computed packaging checks, not runtime evidence of source reading or host acceptance.",
             "files": {path: {"bytes": len(data), "sha256": digest(data)} for path, data in sorted(files.items())},
         }
@@ -254,7 +254,7 @@ def main():
         args.archive_dir.mkdir(parents=True, exist_ok=True)
         for host in PACKAGES:
             folder = ROOT / "packages" / host
-            with zipfile.ZipFile(args.archive_dir / f"yuri-lite-{host}-C1.zip", "w", zipfile.ZIP_DEFLATED) as archive:
+            with zipfile.ZipFile(args.archive_dir / f"yuri-lite-{host}-C2.zip", "w", zipfile.ZIP_DEFLATED) as archive:
                 for path in sorted(p for p in outputs if p.is_relative_to(folder)):
                     info = zipfile.ZipInfo(f"yuri-lite-{host}/{path.relative_to(folder).as_posix()}", (2026, 11, 16, 0, 0, 0))
                     info.compress_type = zipfile.ZIP_DEFLATED
