@@ -8,7 +8,17 @@ The requested pre-Phase-C handoff and all four original design documents were re
 
 The private QA package tested C.1 candidate `45b8fa54db4b2c59b8950e0f135d5787a0ee426a`. Bounded agent trials passed small complete-JSON and field-replacement artifact checks, but found incorrect Unicode in the guarded patch, inconsistent player binding in post/novel drafts, later-event leakage, an unclear original yuri premise and a depth-prompt scope error. The supplied-card result remained partial because protected status content conflicted with the adaptation. T1 has no selected winner; T2 was not accepted. Private inputs and outputs are not part of this repository.
 
-The follow-up strengthens actual-output review in the active instructions without changing the sixteen canonical sources, deciding an output format, or migrating protected status code. These are instruction changes, not proof the model will comply. A real ChatGPT Project test was blocked by a signed-out browser; no setup, probe or prompt was submitted. Real host acceptance, SillyTavern import and play remain unverified. The historical 2026-11-16 observations below describe the pre-QA candidate, not this follow-up.
+The follow-up strengthens actual-output review in the active instructions without changing the sixteen canonical sources, deciding an output format, or migrating protected status code. These are instruction changes, not proof the model will comply. The 2026-11-22 ChatGPT Project attempt ended at the sign-in screen. The subsequent signed-in run is recorded below. The 2026-11-16 observations in Static preparation checks describe the pre-QA candidate.
+
+## Signed-in C.2 validation
+
+On 2026-11-27 the tester set up a signed-in ChatGPT Project with C.2 instructions and `REFERENCE_PACK.md` as the sole project source. They confirmed that the saved instructions retained the C.2 marker and ending. Both smoke prompts ran in separate fresh chats with **GPT-6.2 Sol High**. The tested package is [C.2 at `259e091`](https://github.com/imbdsssity/TavernWeave-Yuri/commit/259e0915841260443edba8b35c87489549d7213a). The package commit's [GitHub Actions validation](https://github.com/imbdsssity/TavernWeave-Yuri/actions/runs/45035299148) also passed.
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| `manual/reference-probe.txt` | Passed | The reply quoted the failure rule from `references/card-output.md` and described the assembled card as the complete JSON produced by applying a patch to the specified source revision. |
+| `prompts/smoke-original.txt` | Passed | The Markdown draft established a clear yuri premise, left the player's choices open, and included a playable greeting and three substantive worldbook entries. |
+| SillyTavern import and live play | Verified by the tester | The tester confirmed successful import and live play. The Project smoke response was Markdown. The imported artifact, the steps used to prepare it, and the SillyTavern version are unspecified. |
 
 ## Static preparation checks
 
@@ -23,14 +33,14 @@ Observed locally on 2026-11-16:
 
 No authored case or static check is conversational evidence. Existing repository CI may run automatically for this PR; inspect the exact candidate check status separately, without transferring the base's successful result. No additional Full campaign was launched locally.
 
-## Unperformed or unavailable
+## Remaining checks
 
 | Gate | State and next evidence |
 | --- | --- |
 | T1 existing-card delivery selection | Open after bounded agent trials. Complete JSON, inspected field replacements and guarded machine-readable patches remain candidates without priority/size threshold. Requires the same bounded synthetic target/change, actual application route and resulting artifact checks. |
 | T2 isolated recovery | Not accepted after a bounded fresh-agent trial. Requires the one existing novel fixture and genuinely separate initial/resume conversations; source examples and static record review cannot pass it. |
-| T3 portable/Projects/GPT | Unperformed. Requires actual active-field acceptance, reference access, tools-disabled task and recovery observations. No account configuration was attempted; account eligibility and numerical limits are unverified. A genuinely unavailable GPT route should then be marked blocked, not passed. |
-| Lite SillyTavern import / human roleplay | Unperformed. JSON appearance, parsing and Full historical tests do not establish either. |
+| T3 portable/Projects/GPT | The signed-in ChatGPT Project setup, reference probe, and original-card smoke test passed on one account. Project recovery, the portable path, Custom GPT compatibility, and broader account eligibility and limits remain open. |
+| Additional C.2 workflow tests | Post and novel player binding, opening-stage knowledge, and exact edits still need targeted retests. |
 | Large inputs / new hosts | Unverified; no universal batch size, output threshold or context guarantee. |
 | Publication / migration | Not performed or authorized. No release/tag, account installation, migration, production advancement or PR merge. |
 

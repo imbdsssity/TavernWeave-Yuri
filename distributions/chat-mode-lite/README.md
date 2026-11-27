@@ -4,7 +4,7 @@
 
 Create an original yuri roleplay card, adapt a supplied JSON/text card or worldbook, or turn a supplied post or novel passage into a playable card and worldbook draft through conversation. Novel work can span declared chapter batches with explicit checkpoints.
 
-This is an **unreleased package preparation candidate** (`lite-packages/C.2`), based on `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. The integrated workflows are included; bounded agent trials found defects; output selection, recovery acceptance and real-host acceptance remain open. It does not inherit Full's binary editing or lossless-preservation guarantees.
+This is an **unreleased package preparation candidate** (`lite-packages/C.2`), based on `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`. It includes all four Lite workflows. See the validation below for the tested ChatGPT Projects path. It does not inherit Full's binary editing or lossless-preservation guarantees.
 
 ## Choose a starting path
 
@@ -31,7 +31,9 @@ For PNG cards supply decoded JSON; for EPUB supply extracted text. Lite does not
 
 ## Readiness and terms
 
-See [package inventory](PACKAGE_CONTENTS.md), [current host findings](packages/HOST_REQUIREMENTS.md), [policy mapping](packages/PARITY.md) and [checks/remaining gates](packages/CHECKS.md). T1 selection and T2 recovery acceptance remain open after bounded agent trials; T3, Lite SillyTavern import and human roleplay remain unperformed. No output winner, general size limit or host compatibility guarantee is selected.
+A signed-in ChatGPT Project passed the C.2 reference-access and original-card smoke tests with **GPT-6.2 Sol High**. The reference probe retrieved the JSON Patch failure rule. The original-card test produced a Markdown draft with a playable yuri opening and three worldbook entries. The tester also verified import and live play in SillyTavern.
+
+Existing-card output selection (T1), recovery across independent chats (T2), and the remaining host checks (T3) are still open. See the [validation record](packages/CHECKS.md#signed-in-c2-validation), [package inventory](PACKAGE_CONTENTS.md), [host findings](packages/HOST_REQUIREMENTS.md), and [policy mapping](packages/PARITY.md).
 
 Official host guidance was rechecked on 2026-11-16. It describes a Custom GPT transition; the compatibility package remains prepared, with portable/Projects fallback. Account creation/editing rights and numerical limits were not verified in an account. Follow the dated host notes and owning workspace notice before setup; preparation does not deploy or publish anything.
 

@@ -4,7 +4,7 @@
 
 通过对话创作原创百合角色卡，改编已有 JSON／文本角色卡或世界书，也可以把提供的帖子、小说片段或连续章节改编成可游玩的角色与世界书草稿。连续小说使用分批处理和显式检查点衔接。
 
-当前是**尚未发布的打包候选版本** `lite-packages/C.2`，基于 `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`。核心及四条流程已整合；有限的代理测试发现缺陷；输出形式选择、续接验收和真实宿主验收仍未完成。Lite 不继承 Full 的二进制编辑或无损保留保证。
+当前是**尚未发布的打包候选版本** `lite-packages/C.2`，基于 `4bdf78f9a8895d8778776e40d2efe8fb1ce6ba95`。本版本包含四条 Lite 工作流。ChatGPT Projects 的实测范围见下方验证记录。Lite 不继承 Full 的二进制编辑或无损保留保证。
 
 ## 选择使用方式
 
@@ -31,7 +31,9 @@ PNG 卡请提供解码后的 JSON；EPUB 请提供已提取文本。Lite 不解�
 
 ## 准备状态与许可
 
-参见[包清单](PACKAGE_CONTENTS.md)、[宿主核查记录](packages/HOST_REQUIREMENTS.md)、[规则映射](packages/PARITY.md)和[检查与待验收事项](packages/CHECKS.md)。有限代理测试后，T1 形式选择和 T2 续接验收仍未完成；T3、Lite 的 SillyTavern 导入及人工游玩尚未执行。尚未选定输出形式、通用大小阈值或宿主兼容保证。
+在已登录的 ChatGPT 项目中，使用 **GPT-6.2 Sol High** 通过了 C.2 的参考资料读取和原创角色卡测试。参考资料测试准确引用了 JSON Patch 应用失败时的处理规则。原创测试生成了一份 Markdown 草稿，包含可接续的百合开场和三条世界书条目。测试者也在 SillyTavern 中验证了导入和实际游玩。
+
+已有卡的输出形式选择（T1）、独立会话续接（T2）及其余宿主测试（T3）仍待完成。参见[验证记录](packages/CHECKS.md#signed-in-c2-validation)、[包清单](PACKAGE_CONTENTS.md)、[宿主核查记录](packages/HOST_REQUIREMENTS.md)和[规则映射](packages/PARITY.md)。
 
 官方宿主资料已于 2026-11-16 重新核查，包含 Custom GPT 过渡说明。兼容包仍已准备，并提供通用／Projects 后备路径。账户创建／编辑权限和数值限制未经账户内验证；设置前请核对带日期的说明和所属工作区通知。准备包不代表部署或发布。
 
